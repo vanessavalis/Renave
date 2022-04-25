@@ -104,7 +104,7 @@ end if
         <h3>Saída de veículo</h3>
         <form class="needs-validation" novalidate action="saida.asp" method="post" name='entradas'>
           <input type="hidden" name="id" id="id" value="<%=id%>">
-          <input type="text" name="codMunicipioSalvo" id="codMunicipioSalvo" value="<%=codigoMunicipio%>">
+          <input type="hidden" name="codMunicipioSalvo" id="codMunicipioSalvo" value="<%=codigoMunicipio%>">
           <div class="form-row">
           <h6>&nbsp;&nbsp;&nbsp;Dados do comprador</h6>
           </div>
@@ -162,16 +162,24 @@ end if
           <div class="form-row">
               <div class="col-md-2.5 mb-1">
                 <label for="cepComprador">CEP:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="cepComprador"
-                  id="cepComprador"
-                  placeholder="Informe o seu CEP" 
-                  value="<%=cepComprador%>"
-                  required
-                />
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="cepComprador"
+                    id="cepComprador"
+                    placeholder="Informe o seu CEP" 
+                    value="<%=cepComprador%>"
+                    required
+                  />  
+                  &nbsp;
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary" id="btnPesquisarCep"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </div>
               </div>
+            </div>  
+            <div class="form-row">
               <div class="col-md-2.5 mb-1">
                 <label for="validationCustom06">Logradouro:</label>
                 <input
@@ -184,36 +192,6 @@ end if
                 required
               />
               </div>
-            </div>
-
-            <div class="form-row">
-              <div class="col-md-2.5 mb-1">
-                <label for="validationCustom07">Número:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="numero"
-                  id="numero"
-                  placeholder="Número" 
-                  value="<%=numero%>"
-                  required
-                />
-              </div>
-              <div class="col-md-2.5 mb-1">
-                <label for="validationCustom08">Complemento:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="complemento"
-                  id="complemento"
-                  placeholder="Complemento" 
-                  value="<%=complemento%>"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
               <div class="col-md-2.5 mb-1">
                 <label for="validationCustom09">Bairro:</label>
                 <input
@@ -226,6 +204,36 @@ end if
                   required
                 />
               </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-2.5 mb-1">
+                <label for="validationCustom08">Complemento:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="complemento"
+                  id="complemento"
+                  placeholder="Complemento" 
+                  value="<%=complemento%>"
+                  required
+                />
+              </div>
+              <div class="col-md-2.5 mb-1">
+                <label for="validationCustom07">Número:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="numero"
+                  id="numero"
+                  placeholder="Número" 
+                  value="<%=numero%>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
               <div class="col-md-3 mb-1">
                 <label for="validationCustom10">Estado:</label>
                 <select class ="custom-select" name="estado" id="estado" required>
@@ -259,18 +267,16 @@ end if
                   <option value="TO"<%=SetaCombo("TO", estado) %>>Tocantins - TO</option>
                 </select>
               </div>
-            </div>
 
-            <div class="form-row">
               <div class="col-md-3 mb-1">
                 <label for="validationCustom11">Cidade:</label>
                 <select class ="custom-select" name="codigoMunicipio" id="codigoMunicipio" required>
                   <option selected disabled value="">Selecione a cidade:</option>
                   <option>...</option>
                 </select>
-              </div>             
+              </div>
             </div>
-
+                           
             <div class="form-row">
               <h6>&nbsp;&nbsp;&nbsp;Dados do veículo</h6>
               </div>
@@ -419,7 +425,39 @@ end if
           $("#estado").trigger('change');         
 
         })
+
+        $("#btnPesquisarCep").click(function(e){
+          e.preventDefault();
+          var cep=$("#cepComprador").val();
+          cep = cep.replace(/[^0-9]/g,'');
+          console.log("cep",cep)          
+
+          if(cep.length != 8){
+            alert("CEP inválido!");
+          } 
+          else{
+            var urlcep = "https://viacep.com.br/ws/"+cep+"/json/"
+            $.ajax({
+              url: urlcep,
+              type: "GET",
+              contentType: "application/json",
+              dataType: "json",
+              success: function(data){
+                console.log('data', data);                
+                $("#logradouro").val(data.logradouro);
+                $("#bairro").val(data.bairro);
+                $("#estado").val(data.uf);
+                $("#codMunicipioSalvo").val(data.ibge);
+                
+                $("#estado").trigger('change');
+                
+              }
+            });
+          }
+        });
       </script>
+
+  
 
       <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -477,7 +515,7 @@ end if
           if($.trim(document.entradas.email.value) == "" ||
              document.entradas.email.value.indexOf('@') == -1 ||
              document.entradas.email.value.indexOf('.') == -1) {
-                alert( "Por favor, insira o seu e-mail corretamente!");
+                alert("Por favor, insira o seu e-mail corretamente!");
                 
                 document.entradas.email.focus();
       
@@ -528,7 +566,7 @@ end if
           if($.trim(document.entradas.emailEstabelecimento.value) == "" ||
              document.entradas.emailEstabelecimento.value.indexOf('@') == -1 ||
              document.entradas.emailEstabelecimento.value.indexOf('.') == -1) {
-                alert( "Por favor, insira o seu e-mail do estabelecimento corretamente!");
+                alert("Por favor, insira o seu e-mail do estabelecimento corretamente!");
                 
                 document.entradas.emailEstabelecimento.focus();      
                 return false;

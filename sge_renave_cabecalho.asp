@@ -11,6 +11,11 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
         crossorigin="anonymous">
 
+        <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"       
+        crossorigin="anonymous">       
+
         <!-- <link href="css/design.css" rel="stylesheet"> -->
 
     </head>
