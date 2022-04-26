@@ -110,9 +110,9 @@ end if
                 	<td><%=objRegistros("VALOR")%></td>
                   <td><%=objRegistros("TIPO")%></td>
                   <td>
-                    <a href="<%=url%>" class="btn btn-success" alt="Editar Cadastro" title="Editar Cadastro" name=editar id=editar></i></a>
+                    <a href="<%=url%>" class="btn btn-success" alt="Editar Cadastro" title="Editar Cadastro" name=editar id=editar><img src ="images/edit.png"></a>
 
-                    <a data-href="<%=url%>" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" alt="Excluir Cadastro" title="Excluir Cadastro"></i></a>
+                    <a data-href="<%=url%>" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" alt="Excluir Cadastro" title="Excluir Cadastro"><img src="images/delete.png"></a>
                  
                      
                   </td>
