@@ -99,18 +99,15 @@ else
 end if
 %>
 
-      <div class="container">
-
-        <h3>Saída de veículo</h3>
+        <h3 align=center>Saída de veículo</h3>
         <form class="needs-validation" novalidate action="saida.asp" method="post" name='entradas'>
           <input type="hidden" name="id" id="id" value="<%=id%>">
           <input type="hidden" name="codMunicipioSalvo" id="codMunicipioSalvo" value="<%=codigoMunicipio%>">
-          <div class="form-row">
-          <h6>&nbsp;&nbsp;&nbsp;Dados do comprador</h6>
-          </div>
 
-          <div class="form-row">
-            <div class="col-md-3 mb-1">
+          <h6 align=center>Dados do comprador</h6>
+          
+          <div class="form-row justify-content-center">
+            <div class="col-md-3">
               <label for="validationCustom01">Nome:</label>
               <input
                 type="text"
@@ -122,7 +119,7 @@ end if
                 required
               />
             </div>
-            <div class="col-md-3 mb-1">
+            <div class="col-md-3 justify-content-center">
               <label for="validationCustom02">E-mail:</label>
               <input
                 type="text"
@@ -136,8 +133,8 @@ end if
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="col-md-3 mb-1">
+          <div class="form-row justify-content-center">
+            <div class="col-md-3">
               <label for="validationCustom03">Tipo de documento:</label>
               <select class ="custom-select" name="tipoDocumento" id="tipoDocumento" required>
                 <option value="">Selecione o tipo do documento:</option>
@@ -145,7 +142,7 @@ end if
                 <option value="CNPJ" <%=SetaCombo("CNPJ", tipoDocumento)%>>CNPJ</option>
             </select>
             </div>
-            <div class="col-md-2.5 mb-1">
+            <div class="col-md-3 justify-content-center">
               <label for="validationCustom04">Número do documento:</label>
               <input
                 type="text"
@@ -159,8 +156,8 @@ end if
             </div>
           </div>
 
-          <div class="form-row">
-              <div class="col-md-2.5 mb-1">
+          <div class="form-row justify-content-center">
+              <div class="col-md-3">
                 <label for="cepComprador">CEP:</label>
                 <div class="input-group">
                   <input
@@ -179,8 +176,8 @@ end if
                 </div>
               </div>
             </div>  
-            <div class="form-row">
-              <div class="col-md-2.5 mb-1">
+            <div class="form-row justify-content-center">
+              <div class="col-md-3">
                 <label for="validationCustom06">Logradouro:</label>
                 <input
                 type="text"
@@ -192,7 +189,7 @@ end if
                 required
               />
               </div>
-              <div class="col-md-2.5 mb-1">
+              <div class="col-md-3 justify-content-center">
                 <label for="validationCustom09">Bairro:</label>
                 <input
                   type="text"
@@ -206,8 +203,8 @@ end if
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="col-md-2.5 mb-1">
+            <div class="form-row justify-content-center">
+              <div class="col-md-3">
                 <label for="validationCustom08">Complemento:</label>
                 <input
                   type="text"
@@ -219,7 +216,7 @@ end if
                   required
                 />
               </div>
-              <div class="col-md-2.5 mb-1">
+              <div class="col-md-3 justify-content-center">
                 <label for="validationCustom07">Número:</label>
                 <input
                   type="text"
@@ -233,8 +230,8 @@ end if
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="col-md-3 mb-1">
+            <div class="form-row justify-content-center">
+              <div class="col-md-3">
                 <label for="validationCustom10">Estado:</label>
                 <select class ="custom-select" name="estado" id="estado" required>
                   <option value="">Selecione o estado:</option>
@@ -268,7 +265,7 @@ end if
                 </select>
               </div>
 
-              <div class="col-md-3 mb-1">
+              <div class="col-md-3 justify-content-center">
                 <label for="validationCustom11">Cidade:</label>
                 <select class ="custom-select" name="codigoMunicipio" id="codigoMunicipio" required>
                   <option selected disabled value="">Selecione a cidade:</option>
@@ -277,9 +274,7 @@ end if
               </div>
             </div>
                            
-            <div class="form-row">
-              <h6>&nbsp;&nbsp;&nbsp;Dados do veículo</h6>
-              </div>
+            <h6 align=center>Dados do veículo</h6>
               
               <%
                 selec="SELECT id, Chassi from ProdutoVeiculos WHERE Chassi<>''"
@@ -287,8 +282,8 @@ end if
                 set objChassis=conDB.execute(selec)
               %>
 
-              <div class="form-row">
-                <div class="col-md-2 mb-1">
+              <div class="form-row justify-content-center">
+                <div class="col-md-3">
                 <label for="validationCustom13">Selecione o chassi:</label>
                   <select class="custom-select" name="chassi" id="chassi" required>
                   <option selected disabled value="">Selecione o chassi:</option>
@@ -305,7 +300,7 @@ end if
                   %>
                   </select>
                 </div>
-                <div class="col-md-3 mb-1">
+                <div class="col-md-3 justify-content-center">
                   <label for="validationCustom12">ID do estoque:</label>
                   <input
                     type="text"
@@ -319,8 +314,8 @@ end if
                 </div>
               </div>
       
-              <div class="form-row">
-                <div class="col-md-3 mb-1">
+              <div class="form-row justify-content-center">
+                <div class="col-md-3">
                   <label for="validationCustom13">Chave da nota fiscal:</label>
                   <input
                     type="text"
@@ -332,7 +327,7 @@ end if
                     required
                   />
                 </div>
-                <div class="col-md-2.5 mb-1">
+                <div class="col-md-3 justify-content-center">
                   <label for="dataVenda">Data da venda:</label>
                   <input
                     type="datetime"
@@ -347,8 +342,8 @@ end if
                 </div>
               </div>
       
-              <div class="form-row">
-                <div class="col-md-2.5 mb-1">
+              <div class="form-row justify-content-center">
+                <div class="col-md-3">
                   <label for="valorVenda">Valor da venda:</label>
                   <input
                     type="text"
@@ -360,7 +355,7 @@ end if
                     required
                   />
                 </div>
-                <div class="col-md-3 mb-1">
+                <div class="col-md-3 justify-content-center">
                   <label for="validationCustom16">E-mail do estabelecimento:</label>
                   <input
                     type="text"
@@ -374,12 +369,10 @@ end if
                 </div> 
               </div>
 
-              <div class="form-row">
+              <div class="form-row justify-content-center mt-3">
                   <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
               </div>
-
         </form>
-      </div>
 
 <!-- #include file="sge_renave_rodape.asp" -->
 
@@ -456,8 +449,6 @@ end if
           }
         });
       </script>
-
-  
 
       <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields

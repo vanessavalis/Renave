@@ -56,10 +56,7 @@ if btnBuscar<>""then
   query=query&" UNION SELECT VS.ID_SAIDA AS 'ID', DATA_VENDA AS 'DATA', CHAVE_NOTA_FISCAL_SAIDA AS 'CHAVE', 0, VALOR_VENDA AS 'VALOR', 'SAIDA' TIPO FROM VEICULO_SAIDA AS VS INNER JOIN ProdutoVeiculos AS PV ON  VS.ID_CHASSI = PV.Id WHERE PV.Chassi = '"&chassi&"' ORDER BY TIPO"
 
   set objRegistros=conDB.execute(query)
-
-
-
-end if 
+end if
 
 %>
 
@@ -70,7 +67,7 @@ end if
     <form class="needs-validation" novalidate action="buscarChassi.asp" method="post" name='entradaChassi'>
 
     	<div id="divBusca">
-          <img src="lupa.png" alt=""/>
+          <img src="images/lupa.png" alt=""/>
           <input type="text" id="buscarChassi" name="buscarChassi" placeholder="Buscar Chassi..."/>
           <button class="btn btn-primary" type="submit" name="btnBuscar" id="btnBuscar" value="Buscar">Buscar</button>
         </div>
@@ -101,6 +98,10 @@ end if
                 if tipoTabela = "DEVOLUCAO" THEN url = "devolucao.asp?id="&objRegistros("id")
                 if tipoTabela = "SAIDA" THEN url = "saida.asp?id="&objRegistros("id")
 
+                urlExc = ""
+                if tipoTabela = "ENTRADA" THEN urlExc = "exc_entrada.asp?id="&objRegistros("id")
+                if tipoTabela = "DEVOLUCAO" THEN urlExc = "exc_devolucao.asp?id="&objRegistros("id")
+                if tipoTabela = "SAIDA" THEN urlExc = "exc_saida.asp?id="&objRegistros("id")
 
         		%>
         			<tr>
@@ -112,9 +113,7 @@ end if
                   <td>
                     <a href="<%=url%>" class="btn btn-success" alt="Editar Cadastro" title="Editar Cadastro" name=editar id=editar><img src ="images/edit.png"></a>
 
-                    <a data-href="<%=url%>" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" alt="Excluir Cadastro" title="Excluir Cadastro"><img src="images/delete.png"></a>
-                 
-                     
+                    <a href="<%=urlExc%>" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" alt="Excluir Cadastro" title="Excluir Cadastro"><img src="images/delete.png"></a>
                   </td>
             	</tr>
         		<%
@@ -137,7 +136,36 @@ end if
           </nav>
         </div>
 
+        <div class="modal fade stick-up" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header clearfix text-left">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                </button>
+                <h5>Confirmação <span class="semi-bold">de Exclusão</span></h5>
+              </div>
+              <div class="modal-body">
+                <!--<p class="debug-url"></p>-->
+                <p>Confirmar a exclusão do cadastro?</p>
+              </div>                
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-danger btn-deletar">Excluir</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(function() { 
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-deletar').attr('href', $(e.relatedTarget).data('href'));
+        //$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-deletar').attr('href') + '</strong>');
+        });
+      });
+    </script>
 
     </form>
 

@@ -49,10 +49,9 @@ else
     set objRetorno = nothing
   end if
 end if
-
 %>
 
-      <h3>Devolução de veículo para montadora</h3>
+      <h3 align=center>Devolução de veículo para montadora</h3>
 
       <form class="needs-validation" novalidate action="devolucao.asp" method="post" name='entradas'>
         <input type="hidden" name="id" id="id" value="<%=id%>">
@@ -63,8 +62,8 @@ end if
           set objChassis=conDB.execute(selec)
         %>
         
-        <div class="form-row">
-          <div class="col-md-2 mb-1">
+        <div class="form-row justify-content-center">
+          <div class="col-md-3">
           <label for="validationCustom01">Selecione o chassi:</label>
             <select class="custom-select" name="chassi" id="chassi" required>
                 <option selected disabled value="">Selecione o chassi:</option>
@@ -81,7 +80,7 @@ end if
                 %>
             </select>
           </div>
-          <div class="col-md-2 mb-1">
+          <div class="col-md-3 justify-content-center">
             <label for="validationCustom02">ID do estoque:</label>
             <input
               type="text"
@@ -95,8 +94,8 @@ end if
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="col-md-2 mb-1">
+        <div class="form-row justify-content-center">
+          <div class="col-md-3">
             <label for="validationCustom03">Chave da nota fiscal:</label>
             <input
               type="text"
@@ -108,7 +107,7 @@ end if
               required
             />
           </div>
-          <div class="col-md-2.5 mb-1">
+          <div class="col-md-3 justify-content-center">
             <label for="dataDevolucao">Data da devolução:</label>
             <input
               type="datetime"
@@ -123,8 +122,8 @@ end if
           </div>
         </div>    
 
-        <div class="form-row">
-          <div class="col-md-3 mb-1">
+        <div class="form-row justify-content-center">
+          <div class="col-md-3">
             <label for="validationCustom05">Motivo da devolução para a montadora:</label>
             <select class="custom-select" name="motivoDevolucao" id="motivoDevolucao" required>
                 <option value="">Escolha um motivo:</option>
@@ -140,7 +139,9 @@ end if
           </div>
         </div>
 
-        <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
+        <div class="form-row justify-content-center mt-3">
+          <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
+        </div>
       </form>
 
 <!-- #include file="sge_renave_rodape.asp" -->

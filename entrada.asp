@@ -50,11 +50,10 @@ else
       end if    
     set objRetorno = nothing
   end if  
-end if 
+end if
 %>
 
-      <h3>Entrada de veículo em estoque</h3>
-
+    <h3 align=center>Entrada de veículo em estoque</h3>
       <form class="needs-validation" novalidate action="entrada.asp" method="post" name='entradas'>
         <input type="hidden" name="id" id="id" value="<%=id%>">
 
@@ -64,9 +63,9 @@ end if
           set objChassis=conDB.execute(selec)
         %>  
         
-        <div class="form-row">
-          <div class="col-md-2 mb-1">
-          <label for="validationCustom01">Selecione o chassi:</label>
+        <div class="form-row justify-content-center">
+          <div class="col-md-3">
+          <label for="validationCustom01">Selecione o chassi: </label>
             <select class="custom-select" name="chassi" id="chassi" required>
                 <option selected disabled value="">Selecione o chassi:</option>
                 <%
@@ -83,7 +82,7 @@ end if
             </select>
           </div>
 
-          <div class="col-md-2 mb-1">
+          <div class="col-md-3 justify-content-center">
             <label for="validationCustom02">Hodômetro:</label>
             <input
               type="text"
@@ -97,8 +96,8 @@ end if
           </div>
         </div>  
 
-        <div class="form-row">
-          <div class="col-md-2.5 mb-1">
+        <div class="form-row justify-content-center">
+          <div class="col-md-3 mb-1">
             <label for="dataMedicao">Data/hora medição hodômetro:</label>
             <input
               type="text"
@@ -112,7 +111,7 @@ end if
             />
           </div>
 
-          <div class="col-md-2.5 mb-1">
+          <div class="col-md-3 mb-1">
             <label for="dataEntrada">Data de entrada em estoque:</label>
             <input
               type="text"
@@ -127,8 +126,8 @@ end if
           </div>
         </div>  
 
-        <div class="form-row">
-          <div class="col-md-2 mb-1">
+        <div class="form-row justify-content-center">
+          <div class="col-md-3">
             <label for="validationCustom05">Chave da nota fiscal:</label>
             <input
               type="text"
@@ -141,7 +140,7 @@ end if
             />
           </div>
 
-          <div class="col-md-2 mb-1">
+          <div class="col-md-3">
             <label for="valorCompra">Valor da compra:</label>
             <input
               type="text"
@@ -154,10 +153,11 @@ end if
             />
           </div>
         </div>
-
-        <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
-      </form>
-
+        <div class="form-row justify-content-center mt-3">
+          <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
+        </form>
+      </div>        
+   
       <!-- #include file="sge_renave_rodape.asp" -->
 
       <script src="jquery.mask.min.js"></script>
