@@ -160,7 +160,7 @@ end if
    
       <!-- #include file="sge_renave_rodape.asp" -->
 
-      <script src="jquery.mask.min.js"></script>
+      
       <script>
         $(document).ready(function(){
           $('#hodometro').mask('000000');

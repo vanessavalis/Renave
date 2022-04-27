@@ -145,8 +145,7 @@ end if
       </form>
 
 <!-- #include file="sge_renave_rodape.asp" -->
-
-      <script src="jquery.mask.min.js"></script>
+      
       <script>
         $(document).ready(function(){
         $('#idEstoque').mask('0000000000000000000');

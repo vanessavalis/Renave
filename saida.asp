@@ -375,8 +375,7 @@ end if
         </form>
 
 <!-- #include file="sge_renave_rodape.asp" -->
-
-      <script src="jquery.mask.min.js"></script>
+      
       <script>
         $(document).ready(function(){
           $('#cepComprador').mask('00000-000');
@@ -435,8 +434,7 @@ end if
               type: "GET",
               contentType: "application/json",
               dataType: "json",
-              success: function(data){
-                console.log('data', data);                
+              success: function(data){                               
                 $("#logradouro").val(data.logradouro);
                 $("#bairro").val(data.bairro);
                 $("#estado").val(data.uf);
@@ -563,8 +561,6 @@ end if
                 return false;
           }
         }
-
-
       </script>
 
 <%

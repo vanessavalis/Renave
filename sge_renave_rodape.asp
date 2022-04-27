@@ -15,6 +15,7 @@
       </script>
 
       <script type="text/javascript" src="js/moment.js"> </script>
+      <script src="js/jquery.mask.min.js"></script>
 
       <script type="text/javascript">
         $(document).on('blur','input[jamsoft-data-time]',function(){

@@ -57,6 +57,8 @@ if btnBuscar<>""then
 
   set objRegistros=conDB.execute(query)
 end if
+      
+id = Request.QueryString ("ID")
 
 %>
 
@@ -96,13 +98,8 @@ end if
                 url = ""
                 if tipoTabela = "ENTRADA" THEN url = "entrada.asp?id="&objRegistros("id")
                 if tipoTabela = "DEVOLUCAO" THEN url = "devolucao.asp?id="&objRegistros("id")
-                if tipoTabela = "SAIDA" THEN url = "saida.asp?id="&objRegistros("id")
-
-                urlExc = ""
-                if tipoTabela = "ENTRADA" THEN urlExc = "exc_entrada.asp?id="&objRegistros("id")
-                if tipoTabela = "DEVOLUCAO" THEN urlExc = "exc_devolucao.asp?id="&objRegistros("id")
-                if tipoTabela = "SAIDA" THEN urlExc = "exc_saida.asp?id="&objRegistros("id")
-
+                if tipoTabela = "SAIDA" THEN url = "saida.asp?id="&objRegistros("id")             
+               
         		%>
         			<tr>
             			<td><%=objRegistros("DATA")%></td>
@@ -113,7 +110,7 @@ end if
                   <td>
                     <a href="<%=url%>" class="btn btn-success" alt="Editar Cadastro" title="Editar Cadastro" name=editar id=editar><img src ="images/edit.png"></a>
 
-                    <a href="<%=urlExc%>" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" alt="Excluir Cadastro" title="Excluir Cadastro"><img src="images/delete.png"></a>
+                    <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Deletar Cadastro" title="Deletar Cadastro"><img src="images/delete.png"></a>
                   </td>
             	</tr>
         		<%
@@ -150,7 +147,7 @@ end if
               </div>                
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-danger btn-deletar">Excluir</a>
+                <a class="btn btn-danger btn-deletar" name="btnDeletar" id="btnDeletar">Deletar </a>
               </div>
             </div>
           </div>
@@ -159,8 +156,21 @@ end if
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
+
+      $(".btnExcluir").click(function(e){       
+        if(confirm("Deseja excluir o registro?")){
+          var btn = $(this);
+          var tela = btn.attr("tela");
+          var registro = btn.attr("registro");
+
+          console.log('tela', tela, 'registro', registro)
+        }   
+      })
+
+
       $(function() { 
         $('#confirm-delete').on('show.bs.modal', function(e) {
+         console.log("retorno", e) 
         $(this).find('.btn-deletar').attr('href', $(e.relatedTarget).data('href'));
         //$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-deletar').attr('href') + '</strong>');
         });
