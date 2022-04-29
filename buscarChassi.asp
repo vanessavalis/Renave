@@ -8,6 +8,37 @@ Session.lcId     = 1033
 
 <%
 
+if (request.QueryString("acao")="excluirRegistro") then
+  registro=request.QueryString("registo")
+  tela=request.QueryString("tela")
+  if (isnull(registro) or registro = "" or registro = "0") then
+    response.write "{""erro"":""Código do Usuário não informado. Favor verificar!"" }"
+    response.End
+  end if 
+
+  if registro <> 0 then 
+    
+    if (tela = "ENTRADA") then
+      delSQL = "DELETE FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro
+      conDB.execute(delSQL)
+    end if
+
+    if (tela = "DEVOLUCAO") then
+      delSQL = "DELETE FROM VEICULO_DEVOLUCAO WHERE ID_DEVOLUCAO = " & registro
+      conDB.execute(delSQL)
+    end if
+
+    if (tela = "SAIDA") then
+      delSQL = "DELETE FROM VEICULO_SAIDA WHERE ID_SAIDA = " & registro
+      conDB.execute(delSQL)
+    end if
+
+  end if 
+
+  response.write "{""sucesso"":""ok"" }"
+  response.end
+end if
+
 titulo="Buscar Chassi"
 
 function Ceil(Number)
@@ -108,9 +139,9 @@ id = Request.QueryString ("ID")
                 	<td><%=objRegistros("VALOR")%></td>
                   <td><%=objRegistros("TIPO")%></td>
                   <td>
-                    <a href="<%=url%>" class="btn btn-success" alt="Editar Cadastro" title="Editar Cadastro" name=editar id=editar><img src ="images/edit.png"></a>
+                    <a href="<%=url%>" class="btn btn-success" alt="Editar Registro" title="Editar Registro" name=editar id=editar><img src ="images/edit.png"></a>
 
-                    <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Deletar Cadastro" title="Deletar Cadastro"><img src="images/delete.png"></a>
+                    <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Excluir Registro" title="Excluir Registro"><img src="images/delete.png"></a>
                   </td>
             	</tr>
         		<%
@@ -132,49 +163,37 @@ id = Request.QueryString ("ID")
           </ul>
           </nav>
         </div>
-
-        <div class="modal fade stick-up" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header clearfix text-left">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                </button>
-                <h5>Confirmação <span class="semi-bold">de Exclusão</span></h5>
-              </div>
-              <div class="modal-body">
-                <!--<p class="debug-url"></p>-->
-                <p>Confirmar a exclusão do cadastro?</p>
-              </div>                
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-danger btn-deletar" name="btnDeletar" id="btnDeletar">Deletar </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+     
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
 
-      $(".btnExcluir").click(function(e){       
+      $(".btnExcluir").click(function(e){   
         if(confirm("Deseja excluir o registro?")){
           var btn = $(this);
           var tela = btn.attr("tela");
-          var registro = btn.attr("registro");
+          var registro = btn.attr("registro");         
+            $.ajax({
+              url: "buscarChassi.asp?acao=excluirRegistro&registo="+registro+"&tela="+tela,
+              type: "POST",
+              contentType: "application/json",
+              dataType: "json",
+              success: function (data){               
+                if(data.erro != undefined){
+                  alert(data.erro)
+                }else if(data.sucesso != undefined){
+                  alert("registro excluido.");
+                }else{
+                  alert("Erro não catalogado")
+                }        
 
-          console.log('tela', tela, 'registro', registro)
+                $("#registro").val(data.registro);
+                $("#tela").val(data.tela);
+              }
+            });
         }   
-      })
-
-
-      $(function() { 
-        $('#confirm-delete').on('show.bs.modal', function(e) {
-         console.log("retorno", e) 
-        $(this).find('.btn-deletar').attr('href', $(e.relatedTarget).data('href'));
-        //$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-deletar').attr('href') + '</strong>');
-        });
       });
+
     </script>
 
     </form>
