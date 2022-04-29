@@ -16,24 +16,34 @@ if (request.QueryString("acao")="excluirRegistro") then
     response.End
   end if 
 
-  if registro <> 0 then 
-    
+  if registro <> 0 then     
+
     if (tela = "ENTRADA") then
-      delSQL = "DELETE FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro
-      conDB.execute(delSQL)
+      set conEntrada=conDB.execute("SELECT * FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro)
+      if conEntrada.eof then
+        response.write "{""erro"":""Chassi não consta no banco de dados."" }"     
+      else
+        delSQL = "DELETE FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro
+        conDB.execute(delSQL)
+      end if     
+    elseif (tela = "DEVOLUCAO") then
+        set conDevolucao=conDB.execute("SELECT * FROM VEICULO_DEVOLUCAO WHERE ID_DEVOLUCAO = " & registro)
+        if conDevolucao.eof then
+          response.write "{""erro"":""Chassi não consta no banco de dados."" }"       
+        else  
+          delSQL = "DELETE FROM VEICULO_DEVOLUCAO WHERE ID_DEVOLUCAO = " & registro
+          conDB.execute(delSQL)
+        end if   
+    elseif (tela = "SAIDA") then
+        set conSaida=conDB.execute("SELECT * FROM VEICULO_SAIDA WHERE ID_SAIDA = " & registro)
+        if conSaida.eof then
+          response.write "{""erro"":""Chassi não consta no banco de dados."" }"        
+        else
+          delSQL = "DELETE FROM VEICULO_SAIDA WHERE ID_SAIDA = " & registro
+          conDB.execute(delSQL)
+        end if
     end if
-
-    if (tela = "DEVOLUCAO") then
-      delSQL = "DELETE FROM VEICULO_DEVOLUCAO WHERE ID_DEVOLUCAO = " & registro
-      conDB.execute(delSQL)
-    end if
-
-    if (tela = "SAIDA") then
-      delSQL = "DELETE FROM VEICULO_SAIDA WHERE ID_SAIDA = " & registro
-      conDB.execute(delSQL)
-    end if
-
-  end if 
+  end if  
 
   response.write "{""sucesso"":""ok"" }"
   response.end
@@ -141,7 +151,7 @@ id = Request.QueryString ("ID")
                   <td>
                     <a href="<%=url%>" class="btn btn-success" alt="Editar Registro" title="Editar Registro" name=editar id=editar><img src ="images/edit.png"></a>
 
-                    <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Excluir Registro" title="Excluir Registro"><img src="images/delete.png"></a>
+                    <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" chassi="<%=chassi%>" alt="Excluir Registro" title="Excluir Registro"><img src="images/delete.png"></a>
                   </td>
             	</tr>
         		<%
@@ -171,8 +181,9 @@ id = Request.QueryString ("ID")
       $(".btnExcluir").click(function(e){   
         if(confirm("Deseja excluir o registro?")){
           var btn = $(this);
+          var chassi = btn.attr("chassi");
           var tela = btn.attr("tela");
-          var registro = btn.attr("registro");         
+          var registro = btn.attr("registro");                  
             $.ajax({
               url: "buscarChassi.asp?acao=excluirRegistro&registo="+registro+"&tela="+tela,
               type: "POST",
@@ -182,9 +193,12 @@ id = Request.QueryString ("ID")
                 if(data.erro != undefined){
                   alert(data.erro)
                 }else if(data.sucesso != undefined){
-                  alert("registro excluido.");
+                  alert("Registro excluído.");
+                  $('#buscarChassi').val(chassi);
+                  $('#btnBuscar').click();
+
                 }else{
-                  alert("Erro não catalogado")
+                  alert("Erro não catalogado.");
                 }        
 
                 $("#registro").val(data.registro);
