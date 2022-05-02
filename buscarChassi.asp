@@ -132,7 +132,6 @@ id = Request.QueryString ("ID")
         		<%
 
               if isobject(objRegistros) then
-
         			 while not objRegistros.EOF
                 tipoTabela = objRegistros("TIPO")
                 
@@ -152,6 +151,8 @@ id = Request.QueryString ("ID")
                     <a href="<%=url%>" class="btn btn-success" alt="Editar Registro" title="Editar Registro" name=editar id=editar><img src ="images/edit.png"></a>
 
                     <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" chassi="<%=chassi%>" alt="Excluir Registro" title="Excluir Registro"><img src="images/delete.png"></a>
+
+                    <a href="#" class="btn btn-info" alt="Enviar Registro" title="Enviar Registro" name=enviar id=enviar><img src="images/send.png"></a>
                   </td>
             	</tr>
         		<%
@@ -176,8 +177,9 @@ id = Request.QueryString ("ID")
      
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
+    <script type="text/javascript" src="envio-api.js"></script>
 
+    <script>
       $(".btnExcluir").click(function(e){   
         if(confirm("Deseja excluir o registro?")){
           var btn = $(this);

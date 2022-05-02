@@ -1,0 +1,4 @@
+ $(".btnDevolucao").click(function(e){
+
+
+ }); 
