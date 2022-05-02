@@ -8,7 +8,7 @@ Session.lcId     = 1033
 if(request.querystring("acao")="pesquisaCidadeUF")then
   uf=request.querystring("uf")
 
-  set obj=conDB.execute("select NomeMunicipio, CodMunicipio from TabMunicipios where NomeEstado='"&uf&"' order by NomeMunicipio")
+  set obj=conDB.execute("SELECT NomeMunicipio, CodMunicipio FROM TabMunicipios WHERE NomeEstado='"&uf&"' ORDER BY NomeMunicipio")
   json=""
   if not obj.eof then
     while not obj.eof 
