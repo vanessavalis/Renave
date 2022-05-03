@@ -2,6 +2,8 @@
 Response.Buffer  = true
 Response.Expires = 0
 Session.lcId     = 1033
+versao=left(replace(time, ":",""),5)
+
 %>
 
 <!-- #include file="includes/conexao.asp" -->
@@ -9,7 +11,7 @@ Session.lcId     = 1033
 <%
 
 if (request.QueryString("acao")="excluirRegistro") then
-  registro=request.QueryString("registo")
+  registro=request.QueryString("registro")
   tela=request.QueryString("tela")
   if (isnull(registro) or registro = "" or registro = "0") then
     response.write "{""erro"":""Código do Usuário não informado. Favor verificar!"" }"
@@ -177,7 +179,7 @@ id = Request.QueryString ("ID")
      
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/envio-api.js"></script>
+    <script type="text/javascript" src="js/envio-api.js?versao=<%=versao%>"></script>
 
     <script>
       $(".btnExcluir").click(function(e){   
@@ -187,7 +189,7 @@ id = Request.QueryString ("ID")
           var tela = btn.attr("tela");
           var registro = btn.attr("registro");                  
             $.ajax({
-              url: "buscarChassi.asp?acao=excluirRegistro&registo="+registro+"&tela="+tela,
+              url: "buscarChassi.asp?acao=excluirRegistro&registro="+registro+"&tela="+tela,
               type: "POST",
               contentType: "application/json",
               dataType: "json",

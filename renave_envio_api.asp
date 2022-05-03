@@ -2,7 +2,7 @@
 
 <%
 	if(request.querystring("acao")="enviarDados") then
-	  	registro=request.QueryString("registo")
+	  	registro=request.QueryString("registro")
   		tela=request.QueryString("tela")
 		json="{}"
 		if(tela = "ENTRADA") then
@@ -50,7 +50,39 @@
 	  		end if
 	  		response.write json
 	  		response.end
+
+		elseif(tela = "SAIDA") then
+			set obj=conDB.execute("SELECT * FROM VEICULO_SAIDA AS VS INNER JOIN ProdutoVeiculos AS PV ON VS.ID_CHASSI = PV.Id WHERE VS.ID_SAIDA = " & registro)
+			if obj.eof then
+        		json= "{""erro"":""Informação não consta no banco de dados."" }"     
+      		else
+				json=""
+	 			if not obj.eof then
+		    		while not obj.eof 
+		    		json=json&"{"
+					json=json&"""nome_comprador"" : """&obj("NOME_COMPRADOR")&""""
+		      		json=json&", ""email_comprador"" : """&obj("EMAIL_COMPRADOR")&""""
+		      		json=json&", ""tipo_documento"" : """&obj("TIPO_DOCUMENTO")&""""
+		      		json=json&", ""numero_documento"" : """&obj("NUMERO_DOCUMENTO")&""""
+		      		json=json&", ""cep"" : """&obj("CEP")&""""
+		      		json=json&", ""logradouro"" : """&obj("LOGRADOURO")&""""
+		      		json=json&", ""numero"" : """&obj("NUMERO")&""""
+		      		json=json&", ""complemento"" : """&obj("COMPLEMENTO")&""""
+		      		json=json&", ""bairro"" : """&obj("BAIRRO")&""""
+		      		json=json&", ""codigo_municipio"" : """&obj("CODIGO_MUNICIPIO")&""""
+		      		json=json&", ""chassi"" : """&obj("CHASSI")&""""
+		      		json=json&", ""id_estoque"" : """&obj("ID_ESTOQUE")&""""
+		      		json=json&", ""chave_nota_fiscal_saida"" : """&obj("CHAVE_NOTA_FISCAL_SAIDA")&""""
+		      		json=json&", ""data_venda"" : """&obj("DATA_VENDA")&""""
+		      		json=json&", ""valor_venda"" : """&obj("VALOR_VENDA")&""""
+		      		json=json&", ""email_estabelecimento"" : """&obj("EMAIL_ESTABELECIMENTO")&""""
+		      		json=json&"}"
+		      		obj.movenext()
+		      		wend
+		      	end if 
+	  		end if
+	  		response.write json
+	  		response.end
 		end if
 	end if
-
 %>
