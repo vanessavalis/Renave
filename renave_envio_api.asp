@@ -34,11 +34,11 @@
 
 		      		json=json&"{"
 					json=json&"""chassi"" : """&obj("CHASSI")&""""
-		      		json=json&", ""hodometro"" : """&obj("KM_HODOMETRO")&""""
-		      		json=json&", ""data_hora_medicao_hodometro"" : """&data_hora_medicao_hodometro_fmt&""""
-		      		json=json&", ""data_entrada_estoque"" : """&data_entrada_estoque_fmt&""""
-		      		json=json&", ""chave_nota_fiscal"" : """&obj("CHAVE_NOTA_FISCAL")&""""
-		      		json=json&", ""valor_compra"" : """&obj("VALOR_COMPRA")&""""
+		      		json=json&", ""QuilometragemHodometro"" : "&obj("KM_HODOMETRO")&""
+		      		json=json&", ""dataHoraMedicaoHodometro"" : """&data_hora_medicao_hodometro_fmt&""""
+		      		json=json&", ""dataEntradaEstoque"" : """&data_entrada_estoque_fmt&""""
+		      		json=json&", ""chaveNotaFiscal"" : """&obj("CHAVE_NOTA_FISCAL")&""""
+		      		json=json&", ""valorCompra"" : "&obj("VALOR_COMPRA")&""
 		      		json=json&"}"
 		      		obj.movenext()
 		    		wend	    		
