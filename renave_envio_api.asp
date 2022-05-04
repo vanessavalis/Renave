@@ -62,14 +62,24 @@
             		mes = right("00"&month(data_devolucao),2)
             		ano = right("0000"&year(data_devolucao),4)
 
-            		data_devolucao_fmt = ano&"-"&mes&"-"&dia 	
+            		data_devolucao_fmt = ano&"-"&mes&"-"&dia
+
+            		if trim(obj("MOTIVO_DEVOLUCAO_MONTADORA")) = "DEVOLUCAO_MONTADORA_FINS_DE_TRANSFORMACAO" then
+            			motivo_devolucao = 0
+            		elseif trim(obj("MOTIVO_DEVOLUCAO_MONTADORA")) = "DEVOLUCAO_MONTADORA_CORRECAO_DE_DADOS_CADASTRAIS_FABRIS" then
+            			motivo_devolucao = 1
+            		elseif trim(obj("MOTIVO_DEVOLUCAO_MONTADORA")) = "DEVOLUCAO_MONTADORA_AVARIAS" then
+            			motivo_devolucao = 2
+            		elseif trim(obj("MOTIVO_DEVOLUCAO_MONTADORA")) = "DEVOLUCAO_MONTADORA_VENDA_DIRETA" then
+            			motivo_devolucao = 3
+            		end if
 
 		      		json=json&"{"
 					json=json&"""Chassi"" : """&obj("CHASSI")&""""
 		      		json=json&", ""IdEstoque"" : """&obj("ID_ESTOQUE")&""""
 		      		json=json&", ""ChaveNotaFiscal"" : """&obj("CHAVE_NOTA_FISCAL_DEVOLUCAO")&""""
 		      		json=json&", ""DataDevolucao"" : """&data_devolucao_fmt&""""
-		      		json=json&", ""MotivoDevolucaoMontadora"" : """&obj("MOTIVO_DEVOLUCAO_MONTADORA")&""""
+		      		json=json&", ""MotivoDevolucaoMontadora"" : "&motivo_devolucao&""
 		      		json=json&"}"
 		      		obj.movenext()
 		    		wend	    		
@@ -92,12 +102,14 @@
             		mes = right("00"&month(data_venda),2)
             		ano = right("0000"&year(data_venda),4)
 
-            		data_venda_fmt = ano&"-"&mes&"-"&dia 
+            		data_venda_fmt = ano&"-"&mes&"-"&dia
+
+            		if trim(obj("TIPO_DOCUMENTO"))="CPF" then tipoDoc=0 else tipoDoc=1 end if
 
 		    		json=json&"{"
 					json=json&"""Nome"" : """&obj("NOME_COMPRADOR")&""""
 		      		json=json&", ""Email"" : """&obj("EMAIL_COMPRADOR")&""""
-		      		json=json&", ""TipoDocumento"" : """&obj("TIPO_DOCUMENTO")&""""
+		      		json=json&", ""TipoDocumento"" : "&tipoDoc&""
 		      		json=json&", ""NumeroDocumento"" : """&obj("NUMERO_DOCUMENTO")&""""
 		      		json=json&", ""Cep"" : """&obj("CEP")&""""
 		      		json=json&", ""Logradouro"" : """&obj("LOGRADOURO")&""""

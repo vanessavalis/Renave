@@ -10,22 +10,27 @@
         contentType: "application/json",
         dataType: "json",
         success: function (data){
-            console.log(data)
-            EnviarEntrada(data)
+            console.log(tela)
+            if(tela == "ENTRADA") {
+                EnviarEntrada(data);
+            } else if(tela == "DEVOLUCAO") {
+                EnviarDevolucao(data);
+            } else if(tela == "SAIDA") {
+                EnviarSaida(data);
+            } 
         }  
     })
 });
 
- function EnviarEntrada(strJson){
-    console.log('retorno api2',strJson);
+ function EnviarEntrada(strJson){     
     $.ajax({
-        url: URL_BASE+"/v1/renave-novos/entrada",
-        data: strJson,
+        url: URL_BASE+"/v1/renave-novos/entrada"+"?cache="+new Date().getTime(),
+        data: JSON.stringify(strJson),
         type: "POST",        
         contentType: "application/json",
         dataType: "json",
         success: function (data){
-            console.log('retorno api',data);
+            console.log('sucesso',data);
         },
         error: function(erro){
             console.log('teste', erro);
@@ -35,8 +40,8 @@
 
  function EnviarDevolucao(strJson){    
     $.ajax({
-        url: URL_BASE+"/v1/renave-novos/devolucao",
-        data: strJson,
+        url: URL_BASE+"/v1/renave-novos/devolucao"+"?cache="+new Date().getTime(),
+        data: JSON.stringify(strJson),
         type: "POST",        
         contentType: "application/json",
         dataType: "json",
@@ -51,8 +56,8 @@
 
   function EnviarSaida(strJson){
     $.ajax({
-        url: URL_BASE+"/v1/renave-novos/saida",
-        data: strJson,
+        url: URL_BASE+"/v1/renave-novos/saida"+"?cache="+new Date().getTime(),
+        data: JSON.stringify(strJson),
         type: "POST",        
         contentType: "application/json",
         dataType: "json",
