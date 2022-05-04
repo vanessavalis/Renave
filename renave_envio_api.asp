@@ -33,12 +33,12 @@
             		data_entrada_estoque_fmt = ano&"-"&mes&"-"&dia 	
 
 		      		json=json&"{"
-					json=json&"""chassi"" : """&obj("CHASSI")&""""
+					json=json&"""Chassi"" : """&obj("CHASSI")&""""
 		      		json=json&", ""QuilometragemHodometro"" : "&obj("KM_HODOMETRO")&""
-		      		json=json&", ""dataHoraMedicaoHodometro"" : """&data_hora_medicao_hodometro_fmt&""""
-		      		json=json&", ""dataEntradaEstoque"" : """&data_entrada_estoque_fmt&""""
-		      		json=json&", ""chaveNotaFiscal"" : """&obj("CHAVE_NOTA_FISCAL")&""""
-		      		json=json&", ""valorCompra"" : "&obj("VALOR_COMPRA")&""
+		      		json=json&", ""DataHoraMedicaoHodometro"" : """&data_hora_medicao_hodometro_fmt&""""
+		      		json=json&", ""DataEntradaEstoque"" : """&data_entrada_estoque_fmt&""""
+		      		json=json&", ""ChaveNotaFiscal"" : """&obj("CHAVE_NOTA_FISCAL")&""""
+		      		json=json&", ""ValorCompra"" : "&obj("VALOR_COMPRA")&""
 		      		json=json&"}"
 		      		obj.movenext()
 		    		wend	    		
@@ -65,11 +65,11 @@
             		data_devolucao_fmt = ano&"-"&mes&"-"&dia 	
 
 		      		json=json&"{"
-					json=json&"""chassi"" : """&obj("CHASSI")&""""
-		      		json=json&", ""id_estoque"" : """&obj("ID_ESTOQUE")&""""
-		      		json=json&", ""chave_nota_fiscal_devolucao"" : """&obj("CHAVE_NOTA_FISCAL_DEVOLUCAO")&""""
-		      		json=json&", ""data_devolucao"" : """&data_devolucao_fmt&""""
-		      		json=json&", ""motivo_devolucao_montadora"" : """&obj("MOTIVO_DEVOLUCAO_MONTADORA")&""""
+					json=json&"""Chassi"" : """&obj("CHASSI")&""""
+		      		json=json&", ""IdEstoque"" : """&obj("ID_ESTOQUE")&""""
+		      		json=json&", ""ChaveNotaFiscal"" : """&obj("CHAVE_NOTA_FISCAL_DEVOLUCAO")&""""
+		      		json=json&", ""DataDevolucao"" : """&data_devolucao_fmt&""""
+		      		json=json&", ""MotivoDevolucaoMontadora"" : """&obj("MOTIVO_DEVOLUCAO_MONTADORA")&""""
 		      		json=json&"}"
 		      		obj.movenext()
 		    		wend	    		
@@ -95,22 +95,22 @@
             		data_venda_fmt = ano&"-"&mes&"-"&dia 
 
 		    		json=json&"{"
-					json=json&"""nome_comprador"" : """&obj("NOME_COMPRADOR")&""""
-		      		json=json&", ""email_comprador"" : """&obj("EMAIL_COMPRADOR")&""""
-		      		json=json&", ""tipo_documento"" : """&obj("TIPO_DOCUMENTO")&""""
-		      		json=json&", ""numero_documento"" : """&obj("NUMERO_DOCUMENTO")&""""
-		      		json=json&", ""cep"" : """&obj("CEP")&""""
-		      		json=json&", ""logradouro"" : """&obj("LOGRADOURO")&""""
-		      		json=json&", ""numero"" : """&obj("NUMERO")&""""
-		      		json=json&", ""complemento"" : """&obj("COMPLEMENTO")&""""
-		      		json=json&", ""bairro"" : """&obj("BAIRRO")&""""
-		      		json=json&", ""codigo_municipio"" : """&obj("CODIGO_MUNICIPIO")&""""
-		      		json=json&", ""chassi"" : """&obj("CHASSI")&""""
-		      		json=json&", ""id_estoque"" : """&obj("ID_ESTOQUE")&""""
-		      		json=json&", ""chave_nota_fiscal_saida"" : """&obj("CHAVE_NOTA_FISCAL_SAIDA")&""""
-		      		json=json&", ""data_venda"" : """&data_venda_fmt&""""
-		      		json=json&", ""valor_venda"" : """&obj("VALOR_VENDA")&""""
-		      		json=json&", ""email_estabelecimento"" : """&obj("EMAIL_ESTABELECIMENTO")&""""
+					json=json&"""Nome"" : """&obj("NOME_COMPRADOR")&""""
+		      		json=json&", ""Email"" : """&obj("EMAIL_COMPRADOR")&""""
+		      		json=json&", ""TipoDocumento"" : """&obj("TIPO_DOCUMENTO")&""""
+		      		json=json&", ""NumeroDocumento"" : """&obj("NUMERO_DOCUMENTO")&""""
+		      		json=json&", ""Cep"" : """&obj("CEP")&""""
+		      		json=json&", ""Logradouro"" : """&obj("LOGRADOURO")&""""
+		      		json=json&", ""Numero"" : """&obj("NUMERO")&""""
+		      		json=json&", ""Complemento"" : """&obj("COMPLEMENTO")&""""
+		      		json=json&", ""Bairro"" : """&obj("BAIRRO")&""""
+		      		json=json&", ""CodigoMunicipio"" : """&obj("CODIGO_MUNICIPIO")&""""
+		      		json=json&", ""Chassi"" : """&obj("CHASSI")&""""
+		      		json=json&", ""IdEstoque"" : """&obj("ID_ESTOQUE")&""""
+		      		json=json&", ""ChaveNotaFiscal"" : """&obj("CHAVE_NOTA_FISCAL_SAIDA")&""""
+		      		json=json&", ""DataVenda"" : """&data_venda_fmt&""""
+		      		json=json&", ""ValorVenda"" : """&obj("VALOR_VENDA")&""""
+		      		json=json&", ""EmailEstabelecimento"" : """&obj("EMAIL_ESTABELECIMENTO")&""""
 		      		json=json&"}"
 		      		obj.movenext()
 		      		wend
