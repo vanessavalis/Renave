@@ -114,7 +114,8 @@ end if
                 class="form-control"
                 name="nome"
                 id="nome"
-                placeholder="Informe o seu nome" 
+                placeholder="Informe o seu nome"
+                maxlength="40"
                 value="<%=nome%>"
                 required
               />
@@ -126,7 +127,8 @@ end if
                 class="form-control"
                 name="email"
                 id="email"
-                placeholder="Informe o seu email" 
+                placeholder="Informe o seu email"
+                maxlength="40"
                 value="<%=email%>"
                 required
               />
@@ -166,6 +168,7 @@ end if
                     name="cepComprador"
                     id="cepComprador"
                     placeholder="Informe o seu CEP" 
+                    maxlength="8"
                     value="<%=cepComprador%>"
                     required
                   />  
@@ -184,7 +187,8 @@ end if
                 class="form-control"
                 name="logradouro"
                 id="logradouro"
-                placeholder="Informe o seu logradouro" 
+                placeholder="Informe o seu logradouro"
+                maxlength="30"
                 value="<%=logradouro%>"
                 required
               />
@@ -196,7 +200,8 @@ end if
                   class="form-control"
                   name="bairro"
                   id="bairro"
-                  placeholder="Bairro" 
+                  placeholder="Bairro"
+                  maxlength="20"
                   value="<%=bairro%>"
                   required
                 />
@@ -211,7 +216,8 @@ end if
                   class="form-control"
                   name="complemento"
                   id="complemento"
-                  placeholder="Complemento" 
+                  placeholder="Complemento"
+                  maxlength="20"
                   value="<%=complemento%>"
                   required
                 />
@@ -223,7 +229,8 @@ end if
                   class="form-control"
                   name="numero"
                   id="numero"
-                  placeholder="Número" 
+                  placeholder="Número"
+                  maxlength="5"
                   value="<%=numero%>"
                   required
                 />
@@ -362,7 +369,8 @@ end if
                     class="form-control"
                     name="emailEstabelecimento"
                     id="emailEstabelecimento"
-                    placeholder="Informe o email do estabelecimento" 
+                    placeholder="Informe o email do estabelecimento"
+                    maxlength="40"
                     value="<%=emailEstabelecimento%>"
                     required
                   />
@@ -382,7 +390,7 @@ end if
           $('#idEstoque').mask('0000000000000000000');
           $('#chaveNotaFiscal').mask('0000-0000-0000-0000-0000-0000-0000-0000-0000-0000-0000');
           $('#dataVenda').mask('00/00/0000');
-          $('#valorVenda').mask('000.000.000.000.000,00', {reverse: true});
+          $('#valorVenda').mask('00.000.000,00', {reverse: true});
 
 
           $("#estado").change(function(){
@@ -435,8 +443,8 @@ end if
               contentType: "application/json",
               dataType: "json",
               success: function(data){                               
-                $("#logradouro").val(data.logradouro);
-                $("#bairro").val(data.bairro);
+                $("#logradouro").val(data.logradouro.substring(0, $("#logradouro").attr("maxlength")));
+                $("#bairro").val(data.bairro.substring(0, $("#bairro").attr("maxlength")));
                 $("#estado").val(data.uf);
                 $("#codMunicipioSalvo").val(data.ibge);
                 
