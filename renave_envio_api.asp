@@ -132,4 +132,16 @@
 	  		response.end
 		end if
 	end if
+
+	elseif(request.querystring("acao")="atualizarStatus") then
+		registro=request.QueryString("registro")
+  		tela=request.QueryString("tela")
+
+  		if(tela = "ENTRADA") then
+			set obj=conDB.execute("UPDATE STATUS_ENVIO FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro)
+
+
+
+
+  	end if
 %>
