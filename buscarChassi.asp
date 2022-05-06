@@ -134,7 +134,7 @@ id = Request.QueryString ("ID")
         		<%
 
               if isobject(objRegistros) then
-        			 while not objRegistros.EOF
+                while not objRegistros.EOF
                 tipoTabela = objRegistros("TIPO")
                 
                 url = ""
@@ -150,31 +150,51 @@ id = Request.QueryString ("ID")
                 	<td><%=objRegistros("VALOR")%></td>
                   <td><%=objRegistros("TIPO")%></td>
                   <td>
-                    <a href="<%=url%>" class="btn btn-success" alt="Editar Registro" title="Editar Registro" name=editar id=editar><img src ="images/edit.png"></a>
 
-                    <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" chassi="<%=chassi%>" alt="Excluir Registro" title="Excluir Registro"><img src="images/delete.png"></a>
+                  <%=objRegistros("STATUS_ENVIO")%>
 
-                    <a href="#" class="btn btn-info btnEnviar" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Enviar Registro" title="Enviar Registro" name=enviar id=enviar><img src="images/send.png"></a>
-                  </td>
-            	</tr>
+                  <% 
+                      if (request.QueryString("acao")="retornarStatus") then
+                        registro=request.QueryString("registro")
+                        tela=request.QueryString("tela")
+
+                        if (isnull(registro) or registro = "" or registro = "0") then
+                        response.write "{""erro"":""Código do Usuário não informado. Favor verificar!"" }"
+                        response.End
+                        end if 
+
+                        if registro <> 0 then     
+
+                          if (tela = "ENTRADA") then
+                            set conEntrada=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro)
+                          elseif (tela = "DEVOLUCAO") then
+                            set conEntrada=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_DEVOLUCAO WHERE ID_DEVOLUCAO = " & registro)
+                          elseif (tela = "SAIDA") then
+                            set conEntrada=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_SAIDA WHERE ID_SAIDA = " & registro)
+                          end if                        
+                          %>
+                            <a href="<%=url%>" class="btn btn-success" alt="Editar Registro" title="Editar Registro" name=editar id=editar><img src ="images/edit.png"></a>
+
+                            <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" chassi="<%=chassi%>" alt="Excluir Registro" title="Excluir Registro" name=excluir id=excluir><img src="images/delete.png"></a>
+
+                            <a href="#" class="btn btn-info btnEnviar" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Enviar Registro" title="Enviar Registro" name=enviar id=enviar><img src="images/send.png"></a>
+                          <%                  
+                        end if
+                      end if
+                        %>  
+                          </td>
+            	       </tr>
         		<%
-         
-        			 objRegistros.moveNext
-        			 wend
-              end if	
-        		%>	
+                  objRegistros.moveNext              
+              wend
+              end if              
+            %>             
             </tbody>
           </table>
 
-          <nav aria-label="...">
-          <ul class="pagination">
-            <% if (pages > 1) then %>
-              <% For i = 1 To pages %>
-                <li class="<%=ternario(Clng(i)=Clng(page), "active")%>"><a href="buscarChassi.asp?page=<%=i%>"><%=i%></a></li>
-              <% Next %>
-            <% end if %>
-          </ul>
-          </nav>
+                          
+
+
         </div>
      
     <script src="js/jquery-3.1.1.min.js"></script>
@@ -211,6 +231,8 @@ id = Request.QueryString ("ID")
             });
         }   
       });
+
+    
 
     </script>
 

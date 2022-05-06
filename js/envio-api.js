@@ -5,6 +5,7 @@ var tela= "";
 $(".btnEnviar").click(function(e){
     e.preventDefault();
     var btn = $(this);
+    var chassi = btn.attr("chassi");
     tela = btn.attr("tela");
     registro = btn.attr("registro");
     $.ajax({
@@ -38,7 +39,7 @@ function EnviarEntrada(strJson){
         },
         error: function(erro){
             console.log('teste', erro);
-        }  
+        } 
     })
  }
 
@@ -89,5 +90,4 @@ function AtualizaStatus(registro, tela){
             console.log('teste', erro);
         }
     })
-
 }
