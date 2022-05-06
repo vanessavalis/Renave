@@ -131,17 +131,18 @@
 	  		response.write json
 	  		response.end
 		end if
-	end if
 
 	elseif(request.querystring("acao")="atualizarStatus") then
 		registro=request.QueryString("registro")
   		tela=request.QueryString("tela")
 
   		if(tela = "ENTRADA") then
-			set obj=conDB.execute("UPDATE STATUS_ENVIO FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro)
-
-
-
+			set obj=conDB.execute("UPDATE VEICULO_ENTRADA SET STATUS_ENVIO = 1 WHERE ID_ENTRADA = " & registro)
+		elseif(tela = "DEVOLUCAO") then
+			set obj=conDB.execute("UPDATE VEICULO_DEVOLUCAO SET STATUS_ENVIO = 1 WHERE ID_DEVOLUCAO = " & registro)
+		elseif(tela = "SAIDA") then
+			set obj=conDB.execute("UPDATE VEICULO_SAIDA SET STATUS_ENVIO = 1 WHERE ID_SAIDA = " & registro)
+		end if
 
   	end if
 %>
