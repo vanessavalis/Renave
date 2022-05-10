@@ -22,6 +22,9 @@
 
     <body>
 
+      <%
+         if visualizarMenu<>"NAO" then
+      %>
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" href="entrada.asp">Entrada</a>
@@ -37,6 +40,9 @@
         </li>
       </ul>
 
+      <%
+      end if
+      %>
       <%
 
         Function FmtData(strData)

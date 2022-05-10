@@ -92,11 +92,11 @@ if btnBuscar<>""then
 
   chassi=request.form("buscarChassi")
 
-  query="SELECT VE.ID_ENTRADA AS 'ID', DATA_ENTRADA_ESTOQUE AS 'DATA', CHAVE_NOTA_FISCAL AS 'CHAVE', KM_HODOMETRO AS 'HODOMETRO', VALOR_COMPRA AS 'VALOR', 'ENTRADA' TIPO FROM VEICULO_ENTRADA AS VE INNER JOIN ProdutoVeiculos AS PV ON VE.ID_CHASSI=PV.Id WHERE PV.Chassi = '"&chassi&"' "
+  query="SELECT VE.ID_ENTRADA AS 'ID', DATA_ENTRADA_ESTOQUE AS 'DATA', CHAVE_NOTA_FISCAL AS 'CHAVE', KM_HODOMETRO AS 'HODOMETRO', VALOR_COMPRA AS 'VALOR', STATUS_ENVIO AS 'STATUS', 'ENTRADA' TIPO FROM VEICULO_ENTRADA AS VE INNER JOIN ProdutoVeiculos AS PV ON VE.ID_CHASSI=PV.Id WHERE PV.Chassi = '"&chassi&"' "
 
-  query=query&" UNION SELECT VD.ID_DEVOLUCAO AS 'ID', DATA_DEVOLUCAO AS 'DATA', CHAVE_NOTA_FISCAL_DEVOLUCAO AS 'CHAVE', 0, 0, 'DEVOLUCAO' TIPO FROM VEICULO_DEVOLUCAO AS VD INNER JOIN ProdutoVeiculos AS PV ON VD.ID_CHASSI=PV.Id  WHERE PV.Chassi = '"&chassi&"' "
+  query=query&" UNION SELECT VD.ID_DEVOLUCAO AS 'ID', DATA_DEVOLUCAO AS 'DATA', CHAVE_NOTA_FISCAL_DEVOLUCAO AS 'CHAVE', 0, 0, STATUS_ENVIO AS 'STATUS', 'DEVOLUCAO' TIPO FROM VEICULO_DEVOLUCAO AS VD INNER JOIN ProdutoVeiculos AS PV ON VD.ID_CHASSI=PV.Id  WHERE PV.Chassi = '"&chassi&"' "
 
-  query=query&" UNION SELECT VS.ID_SAIDA AS 'ID', DATA_VENDA AS 'DATA', CHAVE_NOTA_FISCAL_SAIDA AS 'CHAVE', 0, VALOR_VENDA AS 'VALOR', 'SAIDA' TIPO FROM VEICULO_SAIDA AS VS INNER JOIN ProdutoVeiculos AS PV ON  VS.ID_CHASSI = PV.Id WHERE PV.Chassi = '"&chassi&"' ORDER BY TIPO"
+  query=query&" UNION SELECT VS.ID_SAIDA AS 'ID', DATA_VENDA AS 'DATA', CHAVE_NOTA_FISCAL_SAIDA AS 'CHAVE', 0, VALOR_VENDA AS 'VALOR', STATUS_ENVIO AS 'STATUS', 'SAIDA' TIPO FROM VEICULO_SAIDA AS VS INNER JOIN ProdutoVeiculos AS PV ON  VS.ID_CHASSI = PV.Id WHERE PV.Chassi = '"&chassi&"' ORDER BY TIPO"
 
   set objRegistros=conDB.execute(query)
 end if
@@ -149,28 +149,18 @@ id = Request.QueryString ("ID")
                 	<td><%=objRegistros("HODOMETRO")%></td>
                 	<td><%=objRegistros("VALOR")%></td>
                   <td><%=objRegistros("TIPO")%></td>
-                  <td>
-
-                  <%=objRegistros("STATUS_ENVIO")%>
+                  <td align="center">                 
 
                   <% 
-                      if (request.QueryString("acao")="retornarStatus") then
-                        registro=request.QueryString("registro")
-                        tela=request.QueryString("tela")
-
-                        if (isnull(registro) or registro = "" or registro = "0") then
-                        response.write "{""erro"":""Código do Usuário não informado. Favor verificar!"" }"
-                        response.End
-                        end if 
-
-                        if registro <> 0 then     
+                     statusEnvio = objRegistros("STATUS")                    
+                     if statusEnvio=0 then     
 
                           if (tela = "ENTRADA") then
-                            set conEntrada=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro)
+                            set con=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_ENTRADA WHERE ID_ENTRADA = " & registro)
                           elseif (tela = "DEVOLUCAO") then
-                            set conEntrada=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_DEVOLUCAO WHERE ID_DEVOLUCAO = " & registro)
+                            set con=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_DEVOLUCAO WHERE ID_DEVOLUCAO = " & registro)
                           elseif (tela = "SAIDA") then
-                            set conEntrada=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_SAIDA WHERE ID_SAIDA = " & registro)
+                            set con=conDB.execute("SELECT STATUS_ENVIO FROM VEICULO_SAIDA WHERE ID_SAIDA = " & registro)
                           end if                        
                           %>
                             <a href="<%=url%>" class="btn btn-success" alt="Editar Registro" title="Editar Registro" name=editar id=editar><img src ="images/edit.png"></a>
@@ -178,9 +168,13 @@ id = Request.QueryString ("ID")
                             <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" chassi="<%=chassi%>" alt="Excluir Registro" title="Excluir Registro" name=excluir id=excluir><img src="images/delete.png"></a>
 
                             <a href="#" class="btn btn-info btnEnviar" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Enviar Registro" title="Enviar Registro" name=enviar id=enviar><img src="images/send.png"></a>
-                          <%                  
-                        end if
+                          <%
+                      else
+                        %>
+                          <a href="visualizarRelatorio.asp" class="btn btn-secondary btnVisualizar" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Visualizar Registro" title="Visualizar Registro" name=visualizar id=visualizar><img src ="images/see.png"></a>
+                        <%                    
                       end if
+                     
                         %>  
                           </td>
             	       </tr>
@@ -191,9 +185,6 @@ id = Request.QueryString ("ID")
             %>             
             </tbody>
           </table>
-
-                          
-
 
         </div>
      
@@ -231,8 +222,6 @@ id = Request.QueryString ("ID")
             });
         }   
       });
-
-    
 
     </script>
 

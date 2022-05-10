@@ -54,7 +54,7 @@ end if
 %>
 
     <h3 align=center>Entrada de veículo em estoque</h3>
-      <form class="needs-validation" novalidate action="entrada.asp" method="post" name='entradas'>
+      <form class="needs-validation" novalidate action="entrada.asp" method="post" name='entradas_entrada' id='entradas_entrada'>
         <input type="hidden" name="id" id="id" value="<%=id%>">
 
         <%

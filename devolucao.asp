@@ -53,7 +53,7 @@ end if
 
       <h3 align=center>Devolução de veículo para montadora</h3>
 
-      <form class="needs-validation" novalidate action="devolucao.asp" method="post" name='entradas'>
+      <form class="needs-validation" novalidate action="devolucao.asp" method="post" name='entradas_devolucao' id='entradas_devolucao'>
         <input type="hidden" name="id" id="id" value="<%=id%>">
         
         <%

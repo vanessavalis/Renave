@@ -100,7 +100,7 @@ end if
 %>
 
         <h3 align=center>Saída de veículo</h3>
-        <form class="needs-validation" novalidate action="saida.asp" method="post" name='entradas'>
+        <form class="needs-validation" novalidate action="saida.asp" method="post" name='entradas_saida' id='entradas_saida'>
           <input type="hidden" name="id" id="id" value="<%=id%>">
           <input type="hidden" name="codMunicipioSalvo" id="codMunicipioSalvo" value="<%=codigoMunicipio%>">
 
