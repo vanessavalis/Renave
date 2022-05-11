@@ -19,8 +19,7 @@ $(".btnEnviar").click(function(e){
             if(tela == "ENTRADA") {
                 EnviarEntrada(data);
             } else if(tela == "DEVOLUCAO") {
-                EnviarEntrada(data);
-                //EnviarDevolucao(data);
+                EnviarDevolucao(data);
             } else if(tela == "SAIDA") {
                 EnviarSaida(data);
             }            
@@ -48,7 +47,19 @@ function EnviarEntrada(strJson){
 
             // <> do valor acima => Erro não catalogado
             console.log('teste', erro);
-            
+                if (erro = 0){
+                    alert("Não está havendo comunicação com a API.");
+                } else if (erro = 400){
+                    alert("Dados inválidos.");
+                } else if (erro = 401){
+                    alert("Rotina não encontrada.");
+                } else if (erro = 500){
+                    alert("Erro de processamento do servidor.");
+                } else if (erro = 503){
+                    alert("Servidor indisponível.");
+                } else{
+                    alert("Erro não catalogado.");
+                }
         } 
     })
  }
@@ -66,6 +77,19 @@ function EnviarDevolucao(strJson){
         },
         error: function(erro){
             console.log('teste', erro);
+                if (erro.status == "0"){
+                    alert("Não está havendo comunicação com a API.");
+                } else if (erro.status == "400"){
+                    alert("Dados inválidos.");
+                } else if (erro.status == "401"){
+                    alert("Rotina não encontrada.");
+                } else if (erro.status == "500"){
+                    alert("Erro de processamento do servidor.");
+                } else if (erro.status == "503"){
+                    alert("Servidor indisponível.");
+                } else{
+                    alert("Erro não catalogado.");
+                }
         }  
     })
  }
@@ -83,6 +107,19 @@ function EnviarSaida(strJson){
         },
         error: function(erro){
             console.log('teste', erro);
+                if (erro = 0){
+                    alert("Não está havendo comunicação com a API.");
+                } else if (erro = 400){
+                    alert("Dados inválidos.");
+                } else if (erro = 401){
+                    alert("Rotina não encontrada.");
+                } else if (erro = 500){
+                    alert("Erro de processamento do servidor.");
+                } else if (erro = 503){
+                    alert("Servidor indisponível.");
+                } else{
+                    alert("Erro não catalogado.");
+                }
         }  
     })
 }
