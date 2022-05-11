@@ -171,7 +171,7 @@ id = Request.QueryString ("ID")
                           <%
                       else
                         %>
-                          <a href="visualizarRelatorio.asp" class="btn btn-secondary btnVisualizar" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Visualizar Registro" title="Visualizar Registro" name=visualizar id=visualizar><img src ="images/see.png"></a>
+                          <a href="visualizarRelatorio.asp?tela=<%=tipoTabela%>&registro=<%=objRegistros("id")%>" class="btn btn-secondary btnVisualizar" alt="Visualizar Registro" title="Visualizar Registro" name=visualizar id=visualizar><img src ="images/see.png"></a>
                         <%                    
                       end if
                      

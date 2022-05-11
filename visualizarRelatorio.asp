@@ -11,8 +11,8 @@ visualizarMenu="NAO"
 <!-- #include file="sge_renave_cabecalho.asp" -->
 
 <%
-	registro=request.QueryString("registro")
-	tela=request.QueryString("tela")
+	registro=request.queryString("registro")
+	tela=request.queryString("tela")
 
 	if (tela = "ENTRADA") then
         set con=conDB.execute("SELECT CHASSI, KM_HODOMETRO, DATA_HORA_MEDICAO_HODOMETRO, DATA_ENTRADA_ESTOQUE, CHAVE_NOTA_FISCAL, VALOR_COMPRA FROM VEICULO_ENTRADA AS VE INNER JOIN ProdutoVeiculos AS PV ON VE.ID_CHASSI = PV.Id WHERE ID_ENTRADA = " & registro)
