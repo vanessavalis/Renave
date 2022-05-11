@@ -63,7 +63,7 @@ if btnEnviar<>""then
     ' trabalhar a acao de cadastrar'
     query = "INSERT INTO VEICULO_SAIDA (NOME_COMPRADOR, EMAIL_COMPRADOR, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, CEP, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, ESTADO,  CODIGO_MUNICIPIO, ID_CHASSI, ID_ESTOQUE, CHAVE_NOTA_FISCAL_SAIDA, DATA_VENDA, VALOR_VENDA, EMAIL_ESTABELECIMENTO) VALUES ('"&nome&"','"&email&"', '"&tipoDocumento&"', '"&numeroDocumento&"', '"&cepComprador&"', '"&logradouro&"', '"&numero&"', '"&complemento&"', '"&bairro&"', '"&estado&"', '"&codigoMunicipio&"', '"&chassi&"', '"&idEstoque&"', '"&chaveNotaFiscal&"', '"&dataVenda&"', '"&valorVenda&"', '"&emailEstabelecimento&"');"
   
-    response.write query
+    'response.write query
     'response.end
     conDB.execute(query)
   else

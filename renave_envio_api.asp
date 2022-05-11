@@ -144,5 +144,7 @@
 			set obj=conDB.execute("UPDATE VEICULO_SAIDA SET STATUS_ENVIO = 1 WHERE ID_SAIDA = " & registro)
 		end if
 
+		response.write "{}"
+	  	response.end
   	end if
 %>

@@ -167,7 +167,7 @@ id = Request.QueryString ("ID")
 
                             <a href="#" class="btn btn-danger btnExcluir" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" chassi="<%=chassi%>" alt="Excluir Registro" title="Excluir Registro" name=excluir id=excluir><img src="images/delete.png"></a>
 
-                            <a href="#" class="btn btn-info btnEnviar" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" alt="Enviar Registro" title="Enviar Registro" name=enviar id=enviar><img src="images/send.png"></a>
+                            <a href="#" class="btn btn-info btnEnviar" registro="<%=objRegistros("id")%>" tela="<%=tipoTabela%>" chassi="<%=chassi%>" alt="Enviar Registro" title="Enviar Registro" name=enviar id=enviar><img src="images/send.png"></a>
                           <%
                       else
                         %>
@@ -214,15 +214,14 @@ id = Request.QueryString ("ID")
 
                 }else{
                   alert("Erro não catalogado.");
-                }        
+                }
 
                 $("#registro").val(data.registro);
                 $("#tela").val(data.tela);
               }
             });
-        }   
+        }
       });
-
     </script>
 
     </form>

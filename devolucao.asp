@@ -26,7 +26,7 @@ if btnEnviar <> "" then
     ' trabalhar a acao de cadastrar'
     query="INSERT INTO VEICULO_DEVOLUCAO (ID_CHASSI, ID_ESTOQUE, CHAVE_NOTA_FISCAL_DEVOLUCAO, DATA_DEVOLUCAO, MOTIVO_DEVOLUCAO_MONTADORA) VALUES ('"&chassi&"', '"&idEstoque&"','"&chaveNotaFiscal&"', '"&dataDevolucao&"', '"&motivoDevolucao&"');"
     
-    response.write query
+    'response.write query
     'response.end
     conDB.execute(query)
   else
