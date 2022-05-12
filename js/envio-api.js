@@ -47,15 +47,15 @@ function EnviarEntrada(strJson){
 
             // <> do valor acima => Erro não catalogado
             console.log('teste', erro);
-                if (erro = 0){
+                if (erro.status == "0"){
                     alert("Não está havendo comunicação com a API.");
-                } else if (erro = 400){
+                } else if (erro.status = "400"){
                     alert("Dados inválidos.");
-                } else if (erro = 401){
+                } else if (erro.status = "401"){
                     alert("Rotina não encontrada.");
-                } else if (erro = 500){
+                } else if (erro.status = "500"){
                     alert("Erro de processamento do servidor.");
-                } else if (erro = 503){
+                } else if (erro.status = "503"){
                     alert("Servidor indisponível.");
                 } else{
                     alert("Erro não catalogado.");
@@ -107,15 +107,15 @@ function EnviarSaida(strJson){
         },
         error: function(erro){
             console.log('teste', erro);
-                if (erro = 0){
+                if (erro.status == "0"){
                     alert("Não está havendo comunicação com a API.");
-                } else if (erro = 400){
+                } else if (erro.status == "400"){
                     alert("Dados inválidos.");
-                } else if (erro = 401){
+                } else if (erro.status == "401"){
                     alert("Rotina não encontrada.");
-                } else if (erro = 500){
+                } else if (erro.status == "500"){
                     alert("Erro de processamento do servidor.");
-                } else if (erro = 503){
+                } else if (erro.status == "503"){
                     alert("Servidor indisponível.");
                 } else{
                     alert("Erro não catalogado.");
