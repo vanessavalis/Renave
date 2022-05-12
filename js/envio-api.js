@@ -9,93 +9,59 @@ $(".btnEnviar").click(function(e){
     chassi = btn.attr("chassi");
     tela = btn.attr("tela");
     registro = btn.attr("registro");
-    $.ajax({
-        url: "renave_envio_api.asp?acao=enviarDados&registro="+registro+"&tela="+tela,
-        type: "POST",        
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data){
-            console.log(tela)
-            if(tela == "ENTRADA") {
-                EnviarEntrada(data);
-            } else if(tela == "DEVOLUCAO") {
-                EnviarDevolucao(data);
-            } else if(tela == "SAIDA") {
-                EnviarSaida(data);
-            }            
-        }  
-    })
-});
+    ChamaAjax("renave_envio_api.asp?acao=enviarDados&registro="+registro+"&tela="+tela, null, retornoJsonToAPI); 
+})
+
+function retornoJsonToAPI(data){
+    if(tela == "ENTRADA") {
+        EnviarEntrada(data);
+    } else if(tela == "DEVOLUCAO") {
+       EnviarDevolucao(data);
+    } else if(tela == "SAIDA") {
+        EnviarSaida(data);
+    }    
+}
 
 function EnviarEntrada(strJson){     
-    $.ajax({
-        url: URL_BASE+"/v1/renave-novos/entrada"+"?cache="+new Date().getTime(),
-        data: JSON.stringify(strJson),
+    ChamaAjax(URL_BASE+"/v1/renave-novos/entrada"+"?cache="+new Date().getTime(), JSON.stringify(strJson), AtualizaStatus);   
+}
+
+function EnviarDevolucao(strJson){    
+    ChamaAjax(URL_BASE+"/v1/renave-novos/devolucao"+"?cache="+new Date().getTime(), JSON.stringify(strJson), AtualizaStatus);
+}
+
+function EnviarSaida(strJson){
+    ChamaAjax(URL_BASE+"/v1/renave-novos/saida"+"?cache="+new Date().getTime(), JSON.stringify(strJson), AtualizaStatus);
+}
+
+function AtualizaStatus(){
+  ChamaAjax("renave_envio_api.asp?acao=atualizarStatus&registro="+registro+"&tela="+tela, null, retornoAtualizacaoStatus);
+}
+
+function retornoAtualizacaoStatus(data){
+    $('#buscarChassi').val(chassi);
+    $('#btnBuscar').click();
+}
+
+function ChamaAjax(caminho, dado, func){
+    $.ajax({        
+        url: caminho,
+        data: dado,
         type: "POST",        
         contentType: "application/json",
         dataType: "json",
         success: function(data){
-            console.log('retorno api',data);
-            AtualizaStatus(registro, tela);
+            if(func != undefined){
+                func(data)
+            }            
         },
         error: function(erro){
             console.log('teste', erro);
             RetornaErro(erro);
         } 
     })
- }
-
-function EnviarDevolucao(strJson){    
-    $.ajax({
-        url: URL_BASE+"/v1/renave-novos/devolucao"+"?cache="+new Date().getTime(),
-        data: JSON.stringify(strJson),
-        type: "POST",        
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data){
-            console.log('retorno api',data);
-            AtualizaStatus(registro, tela);
-        },
-        error: function(erro){
-            console.log('teste', erro);
-            RetornaErro(erro);    
-        }  
-    })
- }
-
-function EnviarSaida(strJson){
-    $.ajax({
-        url: URL_BASE+"/v1/renave-novos/saida"+"?cache="+new Date().getTime(),
-        data: JSON.stringify(strJson),
-        type: "POST",        
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data){
-            console.log('retorno api',data);
-            AtualizaStatus(registro, tela);
-        },
-        error: function(erro){
-            console.log('teste', erro);
-            RetornaErro(erro);
-        }  
-    })
 }
 
-function AtualizaStatus(registro, tela){
-    $.ajax({
-        url: "renave_envio_api.asp?acao=atualizarStatus&registro="+registro+"&tela="+tela,
-        type: "POST",
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data){            
-            $('#buscarChassi').val(chassi);
-            $('#btnBuscar').click();
-        },
-        error: function(erro){
-            console.log('teste', erro);
-        }
-    })
-}
 
 function RetornaErro(erro){
     // 0 - sem comunicacao
@@ -104,7 +70,7 @@ function RetornaErro(erro){
     // 500 - erro de processamento do servidor
     // 503 - Servidor indisponível
     // <> do valor acima => Erro não catalogado
-    
+
     switch (erro.status){
         case 0:
             alert("Não está havendo comunicação com a API.");
@@ -124,5 +90,4 @@ function RetornaErro(erro){
         default:
             alert("Erro não catalogado."); 
     }
-
 }
