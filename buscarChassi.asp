@@ -193,35 +193,31 @@ id = Request.QueryString ("ID")
     <script type="text/javascript" src="js/envio-api.js?versao=<%=versao%>"></script>
 
     <script>
-      $(".btnExcluir").click(function(e){   
+
+      var chassi;
+      $(".btnExcluir").click(function(e){  
         if(confirm("Deseja excluir o registro?")){
           var btn = $(this);
-          var chassi = btn.attr("chassi");
+          chassi = btn.attr("chassi");
           var tela = btn.attr("tela");
           var registro = btn.attr("registro");                  
-            $.ajax({
-              url: "buscarChassi.asp?acao=excluirRegistro&registro="+registro+"&tela="+tela,
-              type: "POST",
-              contentType: "application/json",
-              dataType: "json",
-              success: function (data){               
-                if(data.erro != undefined){
-                  alert(data.erro)
-                }else if(data.sucesso != undefined){
-                  alert("Registro excluído.");
-                  $('#buscarChassi').val(chassi);
-                  $('#btnBuscar').click();
-
-                }else{
-                  alert("Erro não catalogado.");
-                }
-
-                $("#registro").val(data.registro);
-                $("#tela").val(data.tela);
-              }
-            });
+            ChamaAjax("buscarChassi.asp?acao=excluirRegistro&registro="+registro+"&tela="+tela, null, "POST", retornoExclusao);
         }
-      });
+      })
+      
+      function retornoExclusao(data){
+        if(data.erro != undefined){
+          alert(data.erro)
+        }else if(data.sucesso != undefined){
+          alert("Registro excluído.");
+          $('#buscarChassi').val(chassi);
+          $('#btnBuscar').click();
+        }else{
+          alert("Erro não catalogado.");
+        }
+          $("#registro").val(data.registro);
+          $("#tela").val(data.tela);
+      }      
     </script>
 
     </form>

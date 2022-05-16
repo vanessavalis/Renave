@@ -23,19 +23,19 @@ function retornoJsonToAPI(data){
 }
 
 function EnviarEntrada(strJson){     
-    ChamaAjax(URL_BASE+"/v1/renave-novos/entrada"+"?cache="+new Date().getTime(), JSON.stringify(strJson), AtualizaStatus);   
+    ChamaAjax(URL_BASE+"/v1/renave-novos/entrada"+"?cache="+new Date().getTime(), JSON.stringify(strJson), "POST", AtualizaStatus);   
 }
 
 function EnviarDevolucao(strJson){    
-    ChamaAjax(URL_BASE+"/v1/renave-novos/devolucao"+"?cache="+new Date().getTime(), JSON.stringify(strJson), AtualizaStatus);
+    ChamaAjax(URL_BASE+"/v1/renave-novos/devolucao"+"?cache="+new Date().getTime(), JSON.stringify(strJson), "POST", AtualizaStatus);
 }
 
 function EnviarSaida(strJson){
-    ChamaAjax(URL_BASE+"/v1/renave-novos/saida"+"?cache="+new Date().getTime(), JSON.stringify(strJson), AtualizaStatus);
+    ChamaAjax(URL_BASE+"/v1/renave-novos/saida"+"?cache="+new Date().getTime(), JSON.stringify(strJson), "POST", AtualizaStatus);
 }
 
 function AtualizaStatus(){
-  ChamaAjax("renave_envio_api.asp?acao=atualizarStatus&registro="+registro+"&tela="+tela, null, retornoAtualizacaoStatus);
+  ChamaAjax("renave_envio_api.asp?acao=atualizarStatus&registro="+registro+"&tela="+tela, null, "POST", retornoAtualizacaoStatus);
 }
 
 function retornoAtualizacaoStatus(data){
@@ -43,11 +43,11 @@ function retornoAtualizacaoStatus(data){
     $('#btnBuscar').click();
 }
 
-function ChamaAjax(caminho, dado, func){
+function ChamaAjax(caminho, dado, tipo, func){
     $.ajax({        
         url: caminho,
         data: dado,
-        type: "POST",        
+        type: tipo,        
         contentType: "application/json",
         dataType: "json",
         success: function(data){
