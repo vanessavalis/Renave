@@ -35,7 +35,7 @@ function EnviarSaida(strJson){
 }
 
 function AtualizaStatus(){
-  ChamaAjax("renave_envio_api.asp?acao=atualizarStatus&registro="+registro+"&tela="+tela, null, "POST", retornoAtualizacaoStatus);
+    ChamaAjax("renave_envio_api.asp?acao=atualizarStatus&registro="+registro+"&tela="+tela, null, "POST", retornoAtualizacaoStatus);
 }
 
 function retornoAtualizacaoStatus(data){

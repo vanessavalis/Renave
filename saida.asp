@@ -167,8 +167,7 @@ end if
                     class="form-control"
                     name="cepComprador"
                     id="cepComprador"
-                    placeholder="Informe o seu CEP" 
-                    maxlength="8"
+                    placeholder="Informe o seu CEP"
                     value="<%=cepComprador%>"
                     required
                   />  
@@ -383,7 +382,9 @@ end if
         </form>
 
 <!-- #include file="sge_renave_rodape.asp" -->
-      
+
+      <script type="text/javascript" src="js/envio-api.js?versao=<%=versao%>"></script>
+
       <script>
         $(document).ready(function(){
           $('#cepComprador').mask('00000-000');
@@ -392,7 +393,6 @@ end if
           $('#dataVenda').mask('00/00/0000');
           $('#valorVenda').mask('00.000.000,00', {reverse: true});
 
-
           $("#estado").change(function(){
             var uf = $.trim($(this).val());
             if(uf == ""){
@@ -400,31 +400,23 @@ end if
             }
 
             var url="?acao=pesquisaCidadeUF&uf="+uf
-            $.ajax({
-              url: url,
-              type: "GET",
-              contentType: "application/json", 
-              dataType: "json",
-              success: function(data){
-                var option=""; 
-                $.each(data, function(i, v){                
-                  option += '<option value="'+v["codMunicipio"]+'">'+v["municipio"]+'</option>';                 
-                })
-                $("#codigoMunicipio").html(option);
-                $("#codigoMunicipio").focus();
+            ChamaAjax(url, null, "GET", retornoMunicipio);
+          });
+          $("#estado").trigger('change'); 
 
-                var codMunicipioSalvo=$.trim($("#codMunicipioSalvo").val());
-                if(codMunicipioSalvo != ""){
-                  $("#codigoMunicipio").val(codMunicipioSalvo);
-                }
+          function retornoMunicipio(data){
+            var option=""; 
+              $.each(data, function(i, v){                
+                option += '<option value="'+v["codMunicipio"]+'">'+v["municipio"]+'</option>';                 
+            })
+              $("#codigoMunicipio").html(option);
+              $("#codigoMunicipio").focus();
 
-              }            
-            });      
-          }); 
-
-          $("#estado").trigger('change');         
-
-        })
+              var codMunicipioSalvo=$.trim($("#codMunicipioSalvo").val());
+              if(codMunicipioSalvo != ""){
+                $("#codigoMunicipio").val(codMunicipioSalvo);
+              }
+          }
 
         $("#btnPesquisarCep").click(function(e){
           e.preventDefault();
@@ -434,29 +426,27 @@ end if
 
           if(cep.length != 8){
             alert("CEP inválido!");
-          } 
+          }
           else{
             var urlcep = "https://viacep.com.br/ws/"+cep+"/json/"
-            $.ajax({
-              url: urlcep,
-              type: "GET",
-              contentType: "application/json",
-              dataType: "json",
-              success: function(data){                               
-                $("#logradouro").val(data.logradouro.substring(0, $("#logradouro").attr("maxlength")));
-                $("#bairro").val(data.bairro.substring(0, $("#bairro").attr("maxlength")));
-                $("#estado").val(data.uf);
-                $("#codMunicipioSalvo").val(data.ibge);
-                
-                $("#estado").trigger('change');
-                
-              }
-            });
-          }
-        });
-      </script>
+            ChamaAjax(urlcep, null, "GET", retornoDados);
 
-      <script>
+            function retornoDados(data){
+              $("#logradouro").val(data.logradouro.substring(0, $("#logradouro").attr("maxlength")));
+              $("#bairro").val(data.bairro.substring(0, $("#bairro").attr("maxlength")));
+              $("#estado").val(data.uf);
+              $("#codMunicipioSalvo").val(data.ibge);
+                
+              $("#estado").trigger('change');
+            }
+          }   
+        });
+
+      });
+
+</script>
+
+<script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
           "use strict";
@@ -486,9 +476,9 @@ end if
             false
           );
         })();
-      </script>
+</script>>
 
-      <script>
+<script>
         $("#btnEnviar").click(validarCampos);
         
         $("#estado").change(function(){
@@ -569,7 +559,7 @@ end if
                 return false;
           }
         }
-      </script>
+</script>
 
 <%
 
