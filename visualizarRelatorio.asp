@@ -21,7 +21,7 @@ visualizarMenu="NAO"
 			<h3 align=center>Entrada de veículo em estoque</h3>
 			<table class="table table-bordered" width="467" border="1px" >
 			    <thead class = "thead-dark">
-			        <tr>
+			        <tr align="center">
 			           	<th>Chassi</th>
 			           	<th>Valor do hodômetro</th>
 				        <th>Data/hora medição hodômetro</th>
@@ -38,8 +38,6 @@ visualizarMenu="NAO"
 	                	<td><%=con("DATA_ENTRADA_ESTOQUE")%></td>
 	                  	<td><%=con("CHAVE_NOTA_FISCAL")%></td>
 	                  	<td><%=con("VALOR_COMPRA")%></td>
-	                  	<td align="center">
-	                  	</td>
             	    </tr>
 			 	</tbody>
 			</table>
@@ -53,7 +51,7 @@ visualizarMenu="NAO"
 			<h3 align=center>Devolução de veículo em estoque</h3>
 			<table class="table table-bordered" width="467" border="1px" >
 	        	<thead class = "thead-dark">
-	        		<tr>
+	        		<tr align="center">
 		        		<th>Chassi</th>
 		            	<th>ID do estoque</th>
 		            	<th>Chave da nota fiscal</th>
@@ -68,8 +66,6 @@ visualizarMenu="NAO"
 	                	<td><%=con("CHAVE_NOTA_FISCAL_DEVOLUCAO")%></td>
 	                	<td><%=con("DATA_DEVOLUCAO")%></td>
 	                  	<td><%=con("MOTIVO_DEVOLUCAO_MONTADORA")%></td>
-	                  	<td align="center">
-	                  	</td>
             		</tr>
 	 			</tbody>
 	    	</table>
@@ -128,7 +124,7 @@ visualizarMenu="NAO"
 			<h5 align=center>Dados do veículo</h5>
 			<table class="table table-bordered" width="467" border="1px" >
 		    	<thead class = "thead-dark">        	
-					<tr>
+					<tr align="center">
 			            <th>Chassi</th>
 			            <th>ID do estoque</th>
 			            <th>Chave da nota fiscal</th>
@@ -145,8 +141,6 @@ visualizarMenu="NAO"
                   		<td><%=con("DATA_VENDA")%></td>
                   		<td><%=con("VALOR_VENDA")%></td>
                   		<td><%=con("EMAIL_ESTABELECIMENTO")%></td>
-                  		<td align="center">
-                  	</td>
 		 		</tbody>
 		    </table>
 		</div>

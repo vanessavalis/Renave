@@ -104,8 +104,7 @@ end if
           <input type="hidden" name="id" id="id" value="<%=id%>">
           <input type="hidden" name="codMunicipioSalvo" id="codMunicipioSalvo" value="<%=codigoMunicipio%>">
 
-          <h6 align=center>Dados do comprador</h6>
-          
+          <h6 align=center>Dados do comprador</h6>       
           <div class="form-row justify-content-center">
             <div class="col-md-3">
               <label for="validationCustom01">Nome:</label>
