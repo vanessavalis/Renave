@@ -50,7 +50,7 @@ visualizarMenu="NAO"
 %>
 		<div id="divExibicao">
 			<h3 align=center>Devolução de veículo em estoque</h3>
-			<table class="table table-bordered" width="467" border="1px" >
+			<table class="table table-bordered" border="1px" style="margin: 0px auto; width: 99%;">
 	        	<thead class = "thead-dark">
 	        		<tr align="center">
 		        		<th>Chassi</th>
@@ -79,7 +79,7 @@ visualizarMenu="NAO"
 		<div id="divExibicao">
 			<h3 align=center>Saída de veículo em estoque</h3>
 			<h5 align=center>Dados do comprador</h5>
-			<table class="table table-bordered" width="467" border="1px" >
+			<table class="table table-bordered" border="1px" style="margin: 0px auto; width: 99%;">
 		        <thead class = "thead-dark">
 		        	<tr>
 		            	<th>Nome do comprador</th>
@@ -97,7 +97,7 @@ visualizarMenu="NAO"
             </table>
 
 			<h5 align=center>Endereço do comprador</h5>
-			<table class="table table-bordered" width="467" border="1px" >
+			<table class="table table-bordered" border="1px" style="margin: 0px auto; width: 99%;">
 		    	<thead class = "thead-dark">
 					<tr>
 			            <th>CEP</th>
@@ -123,7 +123,7 @@ visualizarMenu="NAO"
 			</table>    
 
 			<h5 align=center>Dados do veículo</h5>
-			<table class="table table-bordered" width="467" border="1px">
+			<table class="table table-bordered" border="1px" style="margin: 0px auto; width: 99%;">
 		    	<thead class = "thead-dark">        	
 					<tr align="center">
 			            <th>Chassi</th>
