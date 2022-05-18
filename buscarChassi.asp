@@ -142,9 +142,16 @@ id = Request.QueryString ("ID")
                 if tipoTabela = "DEVOLUCAO" THEN url = "devolucao.asp?id="&objRegistros("id")
                 if tipoTabela = "SAIDA" THEN url = "saida.asp?id="&objRegistros("id")             
                
+                data_evento = objRegistros("DATA")
+                dia = right("00"&day(data_evento),2)
+                mes = right("00"&month(data_evento),2)
+                ano = right("0000"&year(data_evento),4)
+
+                data_evento_fmt = dia&"/"&mes&"/"&ano
+
         		%>
         			<tr>
-            			<td><%=objRegistros("DATA")%></td>
+            			<td><%=data_evento_fmt%></td>
                 	<td><%=objRegistros("CHAVE")%></td>
                 	<td><%=objRegistros("HODOMETRO")%></td>
                 	<td><%=objRegistros("VALOR")%></td>
