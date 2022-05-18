@@ -279,7 +279,7 @@ end if
               </div>
             </div>
                            
-            <h6 align=center>Dados do veículo</h6>
+            <h6 align=center class="mt-3">Dados do veículo</h6>
               
               <%
                 selec="SELECT id, Chassi from ProdutoVeiculos WHERE Chassi<>''"

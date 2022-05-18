@@ -13,13 +13,14 @@ visualizarMenu="NAO"
 <%
 	registro=request.queryString("registro")
 	tela=request.queryString("tela")
+	chassi=request.queryString("chassi")
 
 	if (tela = "ENTRADA") then
         set con=conDB.execute("SELECT CHASSI, KM_HODOMETRO, DATA_HORA_MEDICAO_HODOMETRO, DATA_ENTRADA_ESTOQUE, CHAVE_NOTA_FISCAL, VALOR_COMPRA FROM VEICULO_ENTRADA AS VE INNER JOIN ProdutoVeiculos AS PV ON VE.ID_CHASSI = PV.Id WHERE ID_ENTRADA = " & registro)
 %>
 		<div id="divExibicao">
 			<h3 align=center>Entrada de veículo em estoque</h3>
-			<table class="table table-bordered" width="467" border="1px" >
+			<table class="table table-bordered" border="1px" style="margin: 0px auto; width: 99%;">
 			    <thead class = "thead-dark">
 			        <tr align="center">
 			           	<th>Chassi</th>
@@ -122,7 +123,7 @@ visualizarMenu="NAO"
 			</table>    
 
 			<h5 align=center>Dados do veículo</h5>
-			<table class="table table-bordered" width="467" border="1px" >
+			<table class="table table-bordered" width="467" border="1px">
 		    	<thead class = "thead-dark">        	
 					<tr align="center">
 			            <th>Chassi</th>
@@ -147,5 +148,9 @@ visualizarMenu="NAO"
 <%
 	end if
 %>
+
+<div class="form-row justify-content-center mt-3">
+	<a href="javascript:history.back()" class="btn btn-primary btnVoltar" alt="Voltar" title="Voltar" name=btnVoltar id=btnVoltar>Voltar</a>
+</div>
 
 <!-- #include file="sge_renave_rodape.asp" -->

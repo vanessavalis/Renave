@@ -9,7 +9,7 @@ $(".btnEnviar").click(function(e){
     chassi = btn.attr("chassi");
     tela = btn.attr("tela");
     registro = btn.attr("registro");
-    ChamaAjax("renave_envio_api.asp?acao=enviarDados&registro="+registro+"&tela="+tela, null, retornoJsonToAPI); 
+    ChamaAjax("renave_envio_api.asp?acao=enviarDados&registro="+registro+"&tela="+tela, null, "POST", retornoJsonToAPI); 
 })
 
 function retornoJsonToAPI(data){

@@ -86,7 +86,7 @@ pages = Ceil((totalRows / limit))
 
 btnBuscar=request.form("btnBuscar")
 
-response.write "ValorBotao =>"&btnBuscar
+'response.write "ValorBotao =>"&btnBuscar
 if btnBuscar<>""then
   ' trabalhar a acao de pesquisar'
 
@@ -187,7 +187,7 @@ id = Request.QueryString ("ID")
           </table>
 
         </div>
-     
+
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/envio-api.js?versao=<%=versao%>"></script>
@@ -217,7 +217,8 @@ id = Request.QueryString ("ID")
         }
           $("#registro").val(data.registro);
           $("#tela").val(data.tela);
-      }      
+      }
+
     </script>
 
     </form>
