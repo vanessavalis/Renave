@@ -108,7 +108,6 @@ visualizarMenu="NAO"
 		ano = right("0000"&year(data_venda),4)
 
 		data_venda_fmt = dia&"/"&mes&"/"&ano
-
 %>
 		<div id="divExibicao">
 			<h3 align=center>Saída de veículo em estoque</h3>

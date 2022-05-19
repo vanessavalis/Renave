@@ -118,7 +118,7 @@ id = Request.QueryString ("ID")
         </div>
 
         <div id="divExibicao">
-        	<table class="table table-bordered" border="1px" style="margin: 0px auto; width: 99%;">
+        	<table class="table table-sm table-bordered table-striped" border="1px" style="margin: 0px auto; width: 99%;">
         		<thead class = "thead-light">
             		<tr>
             			<th>Data do Evento</th>
