@@ -17,6 +17,24 @@ visualizarMenu="NAO"
 
 	if (tela = "ENTRADA") then
         set con=conDB.execute("SELECT CHASSI, KM_HODOMETRO, DATA_HORA_MEDICAO_HODOMETRO, DATA_ENTRADA_ESTOQUE, CHAVE_NOTA_FISCAL, VALOR_COMPRA FROM VEICULO_ENTRADA AS VE INNER JOIN ProdutoVeiculos AS PV ON VE.ID_CHASSI = PV.Id WHERE ID_ENTRADA = " & registro)
+
+        data_hora_medicao_hodometro = con("DATA_HORA_MEDICAO_HODOMETRO")
+        dia = right("00"&day(data_hora_medicao_hodometro),2)
+        mes = right("00"&month(data_hora_medicao_hodometro),2)
+        ano = right("0000"&year(data_hora_medicao_hodometro),4)
+        hora = right("00"&hour(data_hora_medicao_hodometro),2)
+        minuto = right("00"&minute(data_hora_medicao_hodometro),2)
+        segundo = right("00"&second(data_hora_medicao_hodometro),2)
+
+        data_hora_medicao_hodometro_fmt = dia&"/"&mes&"/"&ano&" "&hora&":"&minuto&":"&segundo
+
+        data_entrada_estoque = con("DATA_ENTRADA_ESTOQUE")
+        dia = right("00"&day(data_entrada_estoque),2)
+        mes = right("00"&month(data_entrada_estoque),2)
+        ano = right("0000"&year(data_entrada_estoque),4)
+
+        data_entrada_estoque_fmt = dia&"/"&mes&"/"&ano
+
 %>
 		<div id="divExibicao">
 			<h3 align=center>Entrada de veículo em estoque</h3>
@@ -35,8 +53,8 @@ visualizarMenu="NAO"
 			 		<tr>
 	            		<td><%=con("CHASSI")%></td>
 	                	<td><%=con("KM_HODOMETRO")%></td>
-	                	<td><%=con("DATA_HORA_MEDICAO_HODOMETRO")%></td>
-	                	<td><%=con("DATA_ENTRADA_ESTOQUE")%></td>
+	                	<td><%=data_hora_medicao_hodometro_fmt%></td>
+	                	<td><%=data_entrada_estoque_fmt%></td>
 	                  	<td><%=con("CHAVE_NOTA_FISCAL")%></td>
 	                  	<td><%=con("VALOR_COMPRA")%></td>
             	    </tr>
@@ -47,6 +65,14 @@ visualizarMenu="NAO"
 <% 
 	elseif (tela = "DEVOLUCAO") then
 		set con=conDB.execute("SELECT CHASSI, ID_ESTOQUE, CHAVE_NOTA_FISCAL_DEVOLUCAO, DATA_DEVOLUCAO, MOTIVO_DEVOLUCAO_MONTADORA FROM VEICULO_DEVOLUCAO AS VD INNER JOIN ProdutoVeiculos AS PV ON VD.ID_CHASSI = PV.Id WHERE ID_DEVOLUCAO = " & registro)
+
+		data_devolucao = con("DATA_DEVOLUCAO")
+		dia = right("00"&day(data_devolucao),2)
+		mes = right("00"&month(data_devolucao),2)
+		ano = right("0000"&year(data_devolucao),4)
+
+		data_devolucao_fmt = dia&"/"&mes&"/"&ano
+
 %>
 		<div id="divExibicao">
 			<h3 align=center>Devolução de veículo em estoque</h3>
@@ -65,7 +91,7 @@ visualizarMenu="NAO"
 	            		<td><%=con("CHASSI")%></td>
 	                	<td><%=con("ID_ESTOQUE")%></td>
 	                	<td><%=con("CHAVE_NOTA_FISCAL_DEVOLUCAO")%></td>
-	                	<td><%=con("DATA_DEVOLUCAO")%></td>
+	                	<td><%=data_devolucao_fmt%></td>
 	                  	<td><%=con("MOTIVO_DEVOLUCAO_MONTADORA")%></td>
             		</tr>
 	 			</tbody>
@@ -75,6 +101,14 @@ visualizarMenu="NAO"
 <%
 	elseif (tela = "SAIDA") then
 		set con=conDB.execute("SELECT CHASSI, NOME_COMPRADOR, EMAIL_COMPRADOR, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, CEP, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, ESTADO, NomeMunicipio, CODIGO_MUNICIPIO, ID_ESTOQUE, CHAVE_NOTA_FISCAL_SAIDA, DATA_VENDA, VALOR_VENDA, EMAIL_ESTABELECIMENTO  FROM VEICULO_SAIDA AS VS INNER JOIN ProdutoVeiculos AS PV ON VS.ID_CHASSI = PV.Id INNER JOIN TabMunicipios AS TM ON VS.CODIGO_MUNICIPIO = TM.CodMunicipio WHERE ID_SAIDA = " & registro)
+
+		data_venda = con("DATA_VENDA")
+		dia = right("00"&day(data_venda),2)
+		mes = right("00"&month(data_venda),2)
+		ano = right("0000"&year(data_venda),4)
+
+		data_venda_fmt = dia&"/"&mes&"/"&ano
+
 %>
 		<div id="divExibicao">
 			<h3 align=center>Saída de veículo em estoque</h3>
@@ -139,7 +173,7 @@ visualizarMenu="NAO"
             			<td><%=con("CHASSI")%></td>
                   		<td><%=con("ID_ESTOQUE")%></td>
                   		<td><%=con("CHAVE_NOTA_FISCAL_SAIDA")%></td>
-                  		<td><%=con("DATA_VENDA")%></td>
+                  		<td><%=data_venda_fmt%></td>
                   		<td><%=con("VALOR_VENDA")%></td>
                   		<td><%=con("EMAIL_ESTABELECIMENTO")%></td>
 		 		</tbody>
