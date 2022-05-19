@@ -127,7 +127,7 @@ end if
         </div>  
 
         <div class="form-row justify-content-center">
-          <div class="col-md-3">
+          <div class="col-md-5">
             <label for="validationCustom05">Chave da nota fiscal:</label>
             <input
               type="text"
@@ -139,8 +139,10 @@ end if
               required
             />
           </div>
+        </div>
 
-          <div class="col-md-3">
+        <div class="form-row justify-content-center">
+          <div class="col-md-2">
             <label for="valorCompra">Valor da compra:</label>
             <input
               type="text"
@@ -153,6 +155,7 @@ end if
             />
           </div>
         </div>
+
         <div class="form-row justify-content-center mt-3">
           <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
         </form>

@@ -320,7 +320,7 @@ end if
               </div>
       
               <div class="form-row justify-content-center">
-                <div class="col-md-3">
+                <div class="col-md-5">
                   <label for="validationCustom13">Chave da nota fiscal:</label>
                   <input
                     type="text"
@@ -332,6 +332,9 @@ end if
                     required
                   />
                 </div>
+              </div>
+               
+              <div class="form-row justify-content-center">
                 <div class="col-md-3 justify-content-center">
                   <label for="dataVenda">Data da venda:</label>
                   <input
@@ -342,21 +345,6 @@ end if
                     placeholder="DD/MM/AAAA" 
                     value="<%=dataVenda%>"
                     jamsoft-data
-                    required
-                  />
-                </div>
-              </div>
-      
-              <div class="form-row justify-content-center">
-                <div class="col-md-3">
-                  <label for="valorVenda">Valor da venda:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="valorVenda"
-                    id="valorVenda"
-                    placeholder="Informe o valor da venda" 
-                    value="<%=valorVenda%>"
                     required
                   />
                 </div>
@@ -372,7 +360,22 @@ end if
                     value="<%=emailEstabelecimento%>"
                     required
                   />
-                </div> 
+                </div>
+              </div>  
+              
+              <div class="form-row justify-content-center">
+                <div class="col-md-2">
+                  <label for="valorVenda">Valor da venda:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="valorVenda"
+                    id="valorVenda"
+                    placeholder="Informe o valor da venda" 
+                    value="<%=valorVenda%>"
+                    required
+                  />
+                </div>
               </div>
 
               <div class="form-row justify-content-center mt-3">

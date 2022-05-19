@@ -95,7 +95,7 @@ end if
         </div>
 
         <div class="form-row justify-content-center">
-          <div class="col-md-3">
+          <div class="col-md-5">
             <label for="validationCustom03">Chave da nota fiscal:</label>
             <input
               type="text"
@@ -107,7 +107,27 @@ end if
               required
             />
           </div>
-          <div class="col-md-3 justify-content-center">
+        </div>
+
+        <div class="form-row justify-content-center">
+          <div class="col-md-5 justify-content-center">
+            <label for="validationCustom05">Motivo da devolução para a montadora:</label>
+            <select class="custom-select" name="motivoDevolucao" id="motivoDevolucao" required>
+              <option value="">Escolha um motivo:</option>
+              <option value="DEVOLUCAO_MONTADORA_FINS_DE_TRANSFORMACAO" 
+                <%=SetaCombo("DEVOLUCAO_MONTADORA_FINS_DE_TRANSFORMACAO", motivoDevolucao)%>>Devolução montadora: Fins de transformação</option>
+
+                <option value="DEVOLUCAO_MONTADORA_CORRECAO_DE_DADOS_CADASTRAIS_FABRIS"  <%=SetaCombo("DEVOLUCAO_MONTADORA_CORRECAO_DE_DADOS_CADASTRAIS_FABRIS", motivoDevolucao)%>>Devolução Montadora: Correção de dados cadastrais fabris</option>
+
+                <option value="DEVOLUCAO_MONTADORA_AVARIAS" <%=SetaCombo("DEVOLUCAO_MONTADORA_AVARIAS", motivoDevolucao)%>>Devolução Montadora: Avarias</option>
+
+                <option value="DEVOLUCAO_MONTADORA_VENDA_DIRETA" <%=SetaCombo("DEVOLUCAO_MONTADORA_VENDA_DIRETA", motivoDevolucao)%>>Devolução Montadora: Venda direta</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row justify-content-center">
+          <div class="col-md-3">
             <label for="dataDevolucao">Data da devolução:</label>
             <input
               type="datetime"
@@ -118,24 +138,7 @@ end if
               value="<%=dataDevolucao%>"
               jamsoft-data
               required
-            />
-          </div>
-        </div>    
-
-        <div class="form-row justify-content-center">
-          <div class="col-md-3">
-            <label for="validationCustom05">Motivo da devolução para a montadora:</label>
-            <select class="custom-select" name="motivoDevolucao" id="motivoDevolucao" required>
-                <option value="">Escolha um motivo:</option>
-                <option value="DEVOLUCAO_MONTADORA_FINS_DE_TRANSFORMACAO" 
-                <%=SetaCombo("DEVOLUCAO_MONTADORA_FINS_DE_TRANSFORMACAO", motivoDevolucao)%>>Devolução montadora: Fins de transformação</option>
-
-                <option value="DEVOLUCAO_MONTADORA_CORRECAO_DE_DADOS_CADASTRAIS_FABRIS"  <%=SetaCombo("DEVOLUCAO_MONTADORA_CORRECAO_DE_DADOS_CADASTRAIS_FABRIS", motivoDevolucao)%>>Devolução Montadora: Correção de dados cadastrais fabris</option>
-
-                <option value="DEVOLUCAO_MONTADORA_AVARIAS" <%=SetaCombo("DEVOLUCAO_MONTADORA_AVARIAS", motivoDevolucao)%>>Devolução Montadora: Avarias</option>
-
-                <option value="DEVOLUCAO_MONTADORA_VENDA_DIRETA" <%=SetaCombo("DEVOLUCAO_MONTADORA_VENDA_DIRETA", motivoDevolucao)%>>Devolução Montadora: Venda direta</option>
-            </select>
+              />
           </div>
         </div>
 
