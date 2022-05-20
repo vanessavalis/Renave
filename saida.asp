@@ -100,13 +100,13 @@ end if
 %>
 
         <h3 align=center>Saída de veículo</h3>
-        <form class="needs-validation" novalidate action="saida.asp" method="post" name='entradas_saida' id='entradas_saida'>
+        <form class="needs-validation pl-3 pr-3" novalidate action="saida.asp" method="post" name='entradas_saida' id='entradas_saida' >
           <input type="hidden" name="id" id="id" value="<%=id%>">
           <input type="hidden" name="codMunicipioSalvo" id="codMunicipioSalvo" value="<%=codigoMunicipio%>">
 
           <h6 align=center>Dados do comprador</h6>       
-          <div class="form-row justify-content-center">
-            <div class="col-md-3">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
               <label for="validationCustom01">Nome:</label>
               <input
                 type="text"
@@ -119,7 +119,7 @@ end if
                 required
               />
             </div>
-            <div class="col-md-3 justify-content-center">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
               <label for="validationCustom02">E-mail:</label>
               <input
                 type="text"
@@ -134,8 +134,8 @@ end if
             </div>
           </div>
 
-          <div class="form-row justify-content-center">
-            <div class="col-md-3">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
               <label for="validationCustom03">Tipo de documento:</label>
               <select class ="custom-select" name="tipoDocumento" id="tipoDocumento" required>
                 <option value="">Selecione o tipo do documento:</option>
@@ -143,7 +143,7 @@ end if
                 <option value="CNPJ" <%=SetaCombo("CNPJ", tipoDocumento)%>>CNPJ</option>
             </select>
             </div>
-            <div class="col-md-3 justify-content-center">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
               <label for="validationCustom04">Número do documento:</label>
               <input
                 type="text"
@@ -157,8 +157,8 @@ end if
             </div>
           </div>
 
-          <div class="form-row justify-content-center">
-              <div class="col-md-3">
+          <div class="row">
+              <div class="col-12 col-sm-12 col-md-5 offset-md-1 col-lg-3 offset-lg-3 mb-2">
                 <label for="cepComprador">CEP:</label>
                 <div class="input-group">
                   <input
@@ -177,8 +177,8 @@ end if
                 </div>
               </div>
             </div>  
-            <div class="form-row justify-content-center">
-              <div class="col-md-3">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
                 <label for="validationCustom06">Logradouro:</label>
                 <input
                 type="text"
@@ -191,7 +191,7 @@ end if
                 required
               />
               </div>
-              <div class="col-md-3 justify-content-center">
+              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
                 <label for="validationCustom09">Bairro:</label>
                 <input
                   type="text"
@@ -206,8 +206,8 @@ end if
               </div>
             </div>
 
-            <div class="form-row justify-content-center">
-              <div class="col-md-3">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
                 <label for="validationCustom08">Complemento:</label>
                 <input
                   type="text"
@@ -220,7 +220,7 @@ end if
                   required
                 />
               </div>
-              <div class="col-md-3 justify-content-center">
+              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
                 <label for="validationCustom07">Número:</label>
                 <input
                   type="text"
@@ -235,8 +235,8 @@ end if
               </div>
             </div>
 
-            <div class="form-row justify-content-center">
-              <div class="col-md-3">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
                 <label for="validationCustom10">Estado:</label>
                 <select class ="custom-select" name="estado" id="estado" required>
                   <option value="">Selecione o estado:</option>
@@ -270,7 +270,7 @@ end if
                 </select>
               </div>
 
-              <div class="col-md-3 justify-content-center">
+              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
                 <label for="validationCustom11">Cidade:</label>
                 <select class ="custom-select" name="codigoMunicipio" id="codigoMunicipio" required>
                   <option selected disabled value="">Selecione a cidade:</option>
@@ -287,8 +287,8 @@ end if
                 set objChassis=conDB.execute(selec)
               %>
 
-              <div class="form-row justify-content-center">
-                <div class="col-md-3">
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
                 <label for="validationCustom13">Selecione o chassi:</label>
                   <select class="custom-select" name="chassi" id="chassi" required>
                   <option selected disabled value="">Selecione o chassi:</option>
@@ -305,37 +305,37 @@ end if
                   %>
                   </select>
                 </div>
-                <div class="col-md-3 justify-content-center">
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
                   <label for="validationCustom12">ID do estoque:</label>
                   <input
                     type="text"
                     class="form-control"
                     name="idEstoque"
                     id="idEstoque"
-                    placeholder="Informe o ID do estoque" 
+                    placeholder="Número do ID do estoque" 
                     value="<%=idEstoque%>"
                     required
                   />
                 </div>
               </div>
       
-              <div class="form-row justify-content-center">
-                <div class="col-md-5">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 mb-2">
                   <label for="validationCustom13">Chave da nota fiscal:</label>
                   <input
                     type="text"
                     class="form-control"
                     name="chaveNotaFiscal"
                     id="chaveNotaFiscal"
-                    placeholder="Informe a chave da nota fiscal" 
+                    placeholder="Chave da nota fiscal" 
                     value="<%=chaveNotaFiscal%>"
                     required
                   />
                 </div>
               </div>
                
-              <div class="form-row justify-content-center">
-                <div class="col-md-3 justify-content-center">
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
                   <label for="dataVenda">Data da venda:</label>
                   <input
                     type="datetime"
@@ -348,7 +348,7 @@ end if
                     required
                   />
                 </div>
-                <div class="col-md-3 justify-content-center">
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
                   <label for="validationCustom16">E-mail do estabelecimento:</label>
                   <input
                     type="text"
@@ -363,15 +363,15 @@ end if
                 </div>
               </div>  
               
-              <div class="form-row justify-content-center">
-                <div class="col-md-2">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-3 offset-md-1 col-lg-2 offset-lg-3 mb-2">
                   <label for="valorVenda">Valor da venda:</label>
                   <input
                     type="text"
                     class="form-control"
                     name="valorVenda"
                     id="valorVenda"
-                    placeholder="Informe o valor da venda" 
+                    placeholder="Valor da venda" 
                     value="<%=valorVenda%>"
                     required
                   />

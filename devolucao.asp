@@ -62,8 +62,8 @@ end if
           set objChassis=conDB.execute(selec)
         %>
         
-        <div class="form-row justify-content-center">
-          <div class="col-md-3">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
           <label for="validationCustom01">Selecione o chassi:</label>
             <select class="custom-select" name="chassi" id="chassi" required>
                 <option selected disabled value="">Selecione o chassi:</option>
@@ -80,7 +80,7 @@ end if
                 %>
             </select>
           </div>
-          <div class="col-md-3 justify-content-center">
+          <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
             <label for="validationCustom02">ID do estoque:</label>
             <input
               type="text"
@@ -94,8 +94,8 @@ end if
           </div>
         </div>
 
-        <div class="form-row justify-content-center">
-          <div class="col-md-5">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 mb-2">
             <label for="validationCustom03">Chave da nota fiscal:</label>
             <input
               type="text"
@@ -109,8 +109,8 @@ end if
           </div>
         </div>
 
-        <div class="form-row justify-content-center">
-          <div class="col-md-5 justify-content-center">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 mb-2">
             <label for="validationCustom05">Motivo da devolução para a montadora:</label>
             <select class="custom-select" name="motivoDevolucao" id="motivoDevolucao" required>
               <option value="">Escolha um motivo:</option>
@@ -126,8 +126,8 @@ end if
           </div>
         </div>
 
-        <div class="form-row justify-content-center">
-          <div class="col-md-3">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-3 offset-md-1 col-lg-3 offset-lg-3 mb-2">
             <label for="dataDevolucao">Data da devolução:</label>
             <input
               type="datetime"
