@@ -99,14 +99,15 @@ else
 end if
 %>
 
-        <h3 align=center>Saída de veículo</h3>
-        <form class="needs-validation pl-3 pr-3" novalidate action="saida.asp" method="post" name='entradas_saida' id='entradas_saida' >
+<div class="container mt-3">
+<h3 align=center>Saída de veículo</h3>
+        <form class="needs-validation" novalidate action="saida.asp" method="post" name='entradas_saida' id='entradas_saida' >
           <input type="hidden" name="id" id="id" value="<%=id%>">
           <input type="hidden" name="codMunicipioSalvo" id="codMunicipioSalvo" value="<%=codigoMunicipio%>">
 
           <h6 align=center>Dados do comprador</h6>       
           <div class="row">
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-5 mb-2 ml-auto">
               <label for="validationCustom01">Nome:</label>
               <input
                 type="text"
@@ -119,7 +120,7 @@ end if
                 required
               />
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-4 mb-2">
               <label for="validationCustom02">E-mail:</label>
               <input
                 type="text"
@@ -132,18 +133,18 @@ end if
                 required
               />
             </div>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-2 mb-2 mr-auto">
+              <label for="validationCustom03">Documento:</label>
+              <select class ="custom-select" name="tipoDocumento" id="tipoDocumento" required>
+                <option value="">Selecione:</option>
+                <option value="CPF" <%=SetaCombo("CPF", tipoDocumento)%>>CPF</option>
+                <option value="CNPJ" <%=SetaCombo("CNPJ", tipoDocumento)%>>CNPJ</option>
+              </select>
+            </div>
           </div>
 
           <div class="row">
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
-              <label for="validationCustom03">Tipo de documento:</label>
-              <select class ="custom-select" name="tipoDocumento" id="tipoDocumento" required>
-                <option value="">Selecione o tipo do documento:</option>
-                <option value="CPF" <%=SetaCombo("CPF", tipoDocumento)%>>CPF</option>
-                <option value="CNPJ" <%=SetaCombo("CNPJ", tipoDocumento)%>>CNPJ</option>
-            </select>
-            </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-auto">
               <label for="validationCustom04">Número do documento:</label>
               <input
                 type="text"
@@ -155,43 +156,107 @@ end if
                 required
               />
             </div>
-          </div>
+            <div class="col-12 col-sm-12 col-md-5 col-lg-2 mb-2">
+              <label for="cepComprador">CEP:</label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="cepComprador"
+                  id="cepComprador"
+                  placeholder="CEP"
+                  value="<%=cepComprador%>"
+                  required
+                />  
+                &nbsp;
+                  <div class="input-group-btn">
+                      <button class="btn btn-primary" id="btnPesquisarCep"><i class="fa fa-search" aria-hidden="true"></i></button>
+                  </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2">
+              <label for="validationCustom10">Estado:</label>
+              <select class ="custom-select" name="estado" id="estado" required>
+                <option value="">Selecione:</option>
+                <option value="AC"<%=SetaCombo("AC", estado) %>>Acre - AC</option>
+                <option value="AL"<%=SetaCombo("AL", estado) %>>Alagoas - AL</option>
+                <option value="AP"<%=SetaCombo("AP", estado) %>>Amapá - AP</option>
+                <option value="AM"<%=SetaCombo("AM", estado) %>>Amazonas - AM</option>
+                <option value="BA"<%=SetaCombo("BA", estado) %>>Bahia - BA</option>
+                <option value="CE"<%=SetaCombo("CE", estado) %>>Ceará - CE</option>
+                <option value="DF"<%=SetaCombo("DF", estado) %>>Distrito Federal - DF</option>
+                <option value="ES"<%=SetaCombo("ES", estado) %>>Espírito Santo - ES</option>
+                <option value="GO"<%=SetaCombo("GO", estado) %>>Goiás - GO</option>
+                <option value="MA"<%=SetaCombo("MA", estado) %>>Maranhão - MA</option>
+                <option value="MT"<%=SetaCombo("MT", estado) %>>Mato Grosso - MT</option>
+                <option value="MS"<%=SetaCombo("MS", estado) %>>Mato Grosso do Sul - MS</option>
+                <option value="MG"<%=SetaCombo("MG", estado) %>>Minas Gerais - MG</option>
+                <option value="PA"<%=SetaCombo("PA", estado) %>>Pará - PA</option>
+                <option value="PB"<%=SetaCombo("PB", estado) %>>Paraíba - PB</option>
+                <option value="PR"<%=SetaCombo("PR", estado) %>>Paraná - PR</option>
+                <option value="PE"<%=SetaCombo("PE", estado) %>>Pernambuco - PE</option>
+                <option value="PI"<%=SetaCombo("PI", estado) %>>Piauí - PI</option>
+                <option value="RJ"<%=SetaCombo("RJ", estado) %>>Rio de Janeiro - RJ</option>
+                <option value="RN"<%=SetaCombo("RN", estado) %>>Rio Grande do Norte - RN</option>
+                <option value="RS"<%=SetaCombo("RS", estado) %>>Rio Grande do Sul - RS</option>
+                <option value="RO"<%=SetaCombo("RO", estado) %>>Rondônia - RO</option>
+                <option value="RR"<%=SetaCombo("RR", estado) %>>Roraima - RR</option>
+                <option value="SC"<%=SetaCombo("SC", estado) %>>Santa Catarina - SC</option>
+                <option value="SP"<%=SetaCombo("SP", estado) %>>São Paulo - SP</option>
+                <option value="SE"<%=SetaCombo("SE", estado) %>>Sergipe - SE</option>
+                <option value="TO"<%=SetaCombo("TO", estado) %>>Tocantins - TO</option>
+              </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-auto">
+              <label for="validationCustom11">Cidade:</label>
+              <select class ="custom-select" name="codigoMunicipio" id="codigoMunicipio" required>
+                <option selected disabled value="">Selecione:</option>
+                <option>...</option>
+              </select>
+            </div>
+          </div>  
 
           <div class="row">
-              <div class="col-12 col-sm-12 col-md-5 offset-md-1 col-lg-3 offset-lg-3 mb-2">
-                <label for="cepComprador">CEP:</label>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="cepComprador"
-                    id="cepComprador"
-                    placeholder="Informe o seu CEP"
-                    value="<%=cepComprador%>"
-                    required
-                  />  
-                  &nbsp;
-                    <div class="input-group-btn">
-                      <button class="btn btn-primary" id="btnPesquisarCep"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-              </div>
-            </div>  
-            <div class="row">
-              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
-                <label for="validationCustom06">Logradouro:</label>
-                <input
+            <div class="col-12 col-sm-6 col-md-5 col-lg-4 mb-2 ml-sm-auto">
+              <label for="validationCustom06">Logradouro:</label>
+              <input
                 type="text"
                 class="form-control"
                 name="logradouro"
                 id="logradouro"
-                placeholder="Informe o seu logradouro"
+                placeholder="Logradouro"
                 maxlength="30"
                 value="<%=logradouro%>"
                 required
               />
-              </div>
-              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
+            </div>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-2 mb-2">
+              <label for="validationCustom07">Número:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="numero"
+                id="numero"
+                placeholder="Número"
+                maxlength="5"
+                value="<%=numero%>"
+                required
+              />
+            </div>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-2 mb-2">
+              <label for="validationCustom08">Complemento:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="complemento"
+                id="complemento"
+                placeholder="Complemento"
+                maxlength="20"
+                value="<%=complemento%>"
+                required
+                />
+            </div>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-auto">
                 <label for="validationCustom09">Bairro:</label>
                 <input
                   type="text"
@@ -203,81 +268,8 @@ end if
                   value="<%=bairro%>"
                   required
                 />
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
-                <label for="validationCustom08">Complemento:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="complemento"
-                  id="complemento"
-                  placeholder="Complemento"
-                  maxlength="20"
-                  value="<%=complemento%>"
-                  required
-                />
-              </div>
-              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
-                <label for="validationCustom07">Número:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="numero"
-                  id="numero"
-                  placeholder="Número"
-                  maxlength="5"
-                  value="<%=numero%>"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
-                <label for="validationCustom10">Estado:</label>
-                <select class ="custom-select" name="estado" id="estado" required>
-                  <option value="">Selecione o estado:</option>
-                  <option value="AC"<%=SetaCombo("AC", estado) %>>Acre - AC</option>
-                  <option value="AL"<%=SetaCombo("AL", estado) %>>Alagoas - AL</option>
-                  <option value="AP"<%=SetaCombo("AP", estado) %>>Amapá - AP</option>
-                  <option value="AM"<%=SetaCombo("AM", estado) %>>Amazonas - AM</option>
-                  <option value="BA"<%=SetaCombo("BA", estado) %>>Bahia - BA</option>
-                  <option value="CE"<%=SetaCombo("CE", estado) %>>Ceará - CE</option>
-                  <option value="DF"<%=SetaCombo("DF", estado) %>>Distrito Federal - DF</option>
-                  <option value="ES"<%=SetaCombo("ES", estado) %>>Espírito Santo - ES</option>
-                  <option value="GO"<%=SetaCombo("GO", estado) %>>Goiás - GO</option>
-                  <option value="MA"<%=SetaCombo("MA", estado) %>>Maranhão - MA</option>
-                  <option value="MT"<%=SetaCombo("MT", estado) %>>Mato Grosso - MT</option>
-                  <option value="MS"<%=SetaCombo("MS", estado) %>>Mato Grosso do Sul - MS</option>
-                  <option value="MG"<%=SetaCombo("MG", estado) %>>Minas Gerais - MG</option>
-                  <option value="PA"<%=SetaCombo("PA", estado) %>>Pará - PA</option>
-                  <option value="PB"<%=SetaCombo("PB", estado) %>>Paraíba - PB</option>
-                  <option value="PR"<%=SetaCombo("PR", estado) %>>Paraná - PR</option>
-                  <option value="PE"<%=SetaCombo("PE", estado) %>>Pernambuco - PE</option>
-                  <option value="PI"<%=SetaCombo("PI", estado) %>>Piauí - PI</option>
-                  <option value="RJ"<%=SetaCombo("RJ", estado) %>>Rio de Janeiro - RJ</option>
-                  <option value="RN"<%=SetaCombo("RN", estado) %>>Rio Grande do Norte - RN</option>
-                  <option value="RS"<%=SetaCombo("RS", estado) %>>Rio Grande do Sul - RS</option>
-                  <option value="RO"<%=SetaCombo("RO", estado) %>>Rondônia - RO</option>
-                  <option value="RR"<%=SetaCombo("RR", estado) %>>Roraima - RR</option>
-                  <option value="SC"<%=SetaCombo("SC", estado) %>>Santa Catarina - SC</option>
-                  <option value="SP"<%=SetaCombo("SP", estado) %>>São Paulo - SP</option>
-                  <option value="SE"<%=SetaCombo("SE", estado) %>>Sergipe - SE</option>
-                  <option value="TO"<%=SetaCombo("TO", estado) %>>Tocantins - TO</option>
-                </select>
-              </div>
-
-              <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
-                <label for="validationCustom11">Cidade:</label>
-                <select class ="custom-select" name="codigoMunicipio" id="codigoMunicipio" required>
-                  <option selected disabled value="">Selecione a cidade:</option>
-                  <option>...</option>
-                </select>
-              </div>
-            </div>
+            </div>    
+          </div>
                            
             <h6 align=center class="mt-3">Dados do veículo</h6>
               
@@ -288,10 +280,10 @@ end if
               %>
 
               <div class="row">
-                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
-                <label for="validationCustom13">Selecione o chassi:</label>
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-auto">
+                <label for="validationCustom13">Chassi:</label>
                   <select class="custom-select" name="chassi" id="chassi" required>
-                  <option selected disabled value="">Selecione o chassi:</option>
+                  <option selected disabled value="">Selecione:</option>
                   <%
                     while not objChassis.EOF
                 
@@ -305,7 +297,7 @@ end if
                   %>
                   </select>
                 </div>
-                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2">
                   <label for="validationCustom12">ID do estoque:</label>
                   <input
                     type="text"
@@ -317,25 +309,7 @@ end if
                     required
                   />
                 </div>
-              </div>
-      
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 mb-2">
-                  <label for="validationCustom13">Chave da nota fiscal:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="chaveNotaFiscal"
-                    id="chaveNotaFiscal"
-                    placeholder="Chave da nota fiscal" 
-                    value="<%=chaveNotaFiscal%>"
-                    required
-                  />
-                </div>
-              </div>
-               
-              <div class="row">
-                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2">
                   <label for="dataVenda">Data da venda:</label>
                   <input
                     type="datetime"
@@ -348,23 +322,7 @@ end if
                     required
                   />
                 </div>
-                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
-                  <label for="validationCustom16">E-mail do estabelecimento:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="emailEstabelecimento"
-                    id="emailEstabelecimento"
-                    placeholder="Informe o email do estabelecimento"
-                    maxlength="40"
-                    value="<%=emailEstabelecimento%>"
-                    required
-                  />
-                </div>
-              </div>  
-              
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-3 offset-md-1 col-lg-2 offset-lg-3 mb-2">
+                <div class="col-12 col-sm-12 col-md-3 col-lg-2 mb-2 mr-auto">
                   <label for="valorVenda">Valor da venda:</label>
                   <input
                     type="text"
@@ -377,11 +335,42 @@ end if
                   />
                 </div>
               </div>
+      
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-10 col-lg-7 mb-2 ml-auto">
+                  <label for="validationCustom13">Chave da nota fiscal:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="chaveNotaFiscal"
+                    id="chaveNotaFiscal"
+                    placeholder="Chave da nota fiscal" 
+                    value="<%=chaveNotaFiscal%>"
+                    required
+                  />
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 col-lg-4 mb-2 mr-auto">
+                  <label for="validationCustom16">E-mail do estabelecimento:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="emailEstabelecimento"
+                    id="emailEstabelecimento"
+                    placeholder="Email do estabelecimento"
+                    maxlength="40"
+                    value="<%=emailEstabelecimento%>"
+                    required
+                  />
+                </div>
+              </div>
 
-              <div class="form-row justify-content-center mt-3">
-                  <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
+              <div class="row mt-3 mb-4 justify-content-center">
+                <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+                  <button class="btn btn-primary btn-block" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
+                </div> 
               </div>
         </form>
+</div>
 
 <!-- #include file="sge_renave_rodape.asp" -->
 

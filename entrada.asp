@@ -53,8 +53,9 @@ else
 end if
 %>
 
-    <h3 align=center>Entrada de veículo em estoque</h3>
-      <form class="needs-validation pl-2 pr-2" novalidate action="entrada.asp" method="post" name='entradas_entrada' id='entradas_entrada'>
+<div class="container mt-3">
+    <h3 class="text-center mb-3">Entrada de veículo em estoque</h3>
+      <form class="needs-validation" novalidate action="entrada.asp" method="post" name='entradas_entrada' id='entradas_entrada'>
         <input type="hidden" name="id" id="id" value="<%=id%>">
 
         <%
@@ -64,10 +65,10 @@ end if
         %>  
         
         <div class="row">
-          <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
-          <label for="validationCustom01">Selecione o chassi: </label>
+          <div class="col-12 col-sm-4 col-md-3 col-lg-2 mb-2 ml-auto">
+          <label for="validationCustom01">Chassi: </label>
             <select class="custom-select" name="chassi" id="chassi" required>
-                <option selected disabled value="">Selecione o chassi:</option>
+                <option selected disabled value="">Selecione:</option>
                 <%
                   while not objChassis.EOF
                 
@@ -82,7 +83,7 @@ end if
             </select>
           </div>
 
-          <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
+          <div class="col-12 col-sm-4 col-md-3 col-lg-2 mb-2">
             <label for="validationCustom02">Hodômetro:</label>
             <input
               type="text"
@@ -94,11 +95,25 @@ end if
               required
             />
           </div>
+
+
+          <div class="col-12 col-sm-4 col-md-3 col-lg-2 mb-2 mr-auto">
+            <label for="valorCompra">Valor da compra:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="valorCompra"
+              id="valorCompra"
+              placeholder="Valor da compra" 
+              value="<%=valorCompra%>"
+              required
+            />
+          </div>
         </div>  
 
         <div class="row">
-          <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-sm-auto">
-            <label for="dataMedicao">Data/hora medição hodômetro:</label>
+          <div class="col-12 col-sm-7 col-md-5 col-lg-3 mb-2 ml-auto">
+            <label for="dataMedicao">Data medição hodômetro:</label>
             <input
               type="text"
               class="form-control"
@@ -111,8 +126,8 @@ end if
             />
           </div>
 
-          <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-sm-auto">
-            <label for="dataEntrada">Data de entrada em estoque:</label>
+          <div class="col-12 col-sm-5 col-md-4 col-lg-3 mb-2 mr-auto">
+            <label for="dataEntrada">Entrada de estoque:</label>
             <input
               type="text"
               class="form-control"
@@ -126,8 +141,8 @@ end if
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 mb-2">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-12 col-md-9 col-lg-6 mb-2 ">
             <label for="validationCustom05">Chave da nota fiscal:</label>
             <input
               type="text"
@@ -140,25 +155,14 @@ end if
             />
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-3 offset-md-1 col-lg-2 offset-lg-3 mb-2">
-            <label for="valorCompra">Valor da compra:</label>
-            <input
-              type="text"
-              class="form-control"
-              name="valorCompra"
-              id="valorCompra"
-              placeholder="Valor da compra" 
-              value="<%=valorCompra%>"
-              required
-            />
-          </div>
-        </div>
 
-        <div class="form-row justify-content-center mt-3">
-          <button class="btn btn-primary" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
+        <div class="row mt-3 mb-4 justify-content-center">
+          <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+          <button class="btn btn-primary btn-block" type="submit" name="btnEnviar" id="btnEnviar" value="Enviar">Enviar</button>
+          </div>
         </form>
-      </div>        
+      </div>   
+      </div>     
    
       <!-- #include file="sge_renave_rodape.asp" -->
 

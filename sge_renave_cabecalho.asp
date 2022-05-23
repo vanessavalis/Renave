@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <html>
     <head>
       <meta charset="UTF-8" />
@@ -18,6 +18,41 @@
 
         <!-- <link href="css/design.css" rel="stylesheet"> -->
 
+        <style type="text/css">
+          .navbar-nav{
+            min-height: 42px !important;
+          }
+
+          .navbar-nav li{
+            margin-right: 10px;
+            
+            text-align: center;
+            
+          }
+
+          .navbar-nav a{
+            width: 115px;
+            transition: all .2s;
+          }
+
+          .navbar-nav a:hover{
+            border-bottom: 2px solid red;
+          }
+
+          @media (max-width:  580px){
+            .navbar-nav {
+              width: 100%;
+              flex-direction: column !important;
+            }
+
+           .navbar-nav li{
+              text-align: -webkit-center;
+              width: 100%;
+              height: 40px;
+           }
+          }
+        </style>
+
     </head>
 
     <body>
@@ -25,21 +60,22 @@
       <%
          if visualizarMenu<>"NAO" then
       %>
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link" href="entrada.asp">Entrada</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="devolucao.asp">Devolução</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="saida.asp">Saída</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="buscarChassi.asp">Buscar Chassi</a>
-        </li>
-      </ul>
-
+      <nav class="navbar navbar-expand navbar-light bg-dark">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="entrada.asp">Entrada</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="devolucao.asp">Devolução</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="saida.asp">Saída</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="buscarChassi.asp">Buscar Chassi</a>
+          </li>
+        </ul>
+      </nav>
       <%
       end if
       %>
