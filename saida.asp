@@ -107,7 +107,7 @@ end if
 
           <h6 align=center>Dados do comprador</h6>       
           <div class="row">
-            <div class="col-12 col-sm-6 col-md-5 col-lg-5 mb-2 ml-auto">
+            <div class="col-12 col-sm-6 col-md-12 col-lg-5 mb-2 ml-auto">
               <label for="validationCustom01">Nome:</label>
               <input
                 type="text"
@@ -120,7 +120,7 @@ end if
                 required
               />
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-4 mb-2">
+            <div class="col-12 col-sm-6 col-md-7 col-lg-4 mb-2">
               <label for="validationCustom02">E-mail:</label>
               <input
                 type="text"
@@ -144,7 +144,7 @@ end if
           </div>
 
           <div class="row">
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 ml-auto">
+            <div class="col-12 col-sm-7 col-md-7 col-lg-3 mb-2 ml-auto">
               <label for="validationCustom04">Número do documento:</label>
               <input
                 type="text"
@@ -156,7 +156,7 @@ end if
                 required
               />
             </div>
-            <div class="col-12 col-sm-12 col-md-5 col-lg-2 mb-2">
+            <div class="col-12 col-sm-5 col-md-5 col-lg-2 mb-2">
               <label for="cepComprador">CEP:</label>
               <div class="input-group">
                 <input
@@ -174,7 +174,7 @@ end if
                   </div>
               </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-2">
               <label for="validationCustom10">Estado:</label>
               <select class ="custom-select" name="estado" id="estado" required>
                 <option value="">Selecione:</option>
@@ -207,7 +207,7 @@ end if
                 <option value="TO"<%=SetaCombo("TO", estado) %>>Tocantins - TO</option>
               </select>
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-auto">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-2 mr-auto">
               <label for="validationCustom11">Cidade:</label>
               <select class ="custom-select" name="codigoMunicipio" id="codigoMunicipio" required>
                 <option selected disabled value="">Selecione:</option>
@@ -217,7 +217,7 @@ end if
           </div>  
 
           <div class="row">
-            <div class="col-12 col-sm-6 col-md-5 col-lg-4 mb-2 ml-sm-auto">
+            <div class="col-12 col-sm-9 col-md-9 col-lg-4 mb-2 ml-sm-auto">
               <label for="validationCustom06">Logradouro:</label>
               <input
                 type="text"
@@ -230,7 +230,7 @@ end if
                 required
               />
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-2 mb-2">
+            <div class="col-12 col-sm-3 col-md-3 col-lg-2 mb-2">
               <label for="validationCustom07">Número:</label>
               <input
                 type="text"
@@ -243,7 +243,7 @@ end if
                 required
               />
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-2 mb-2">
+            <div class="col-12 col-sm-4 col-md-5 col-lg-2 mb-2">
               <label for="validationCustom08">Complemento:</label>
               <input
                 type="text"
@@ -256,7 +256,7 @@ end if
                 required
                 />
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2 mr-auto">
+            <div class="col-12 col-sm-8 col-md-7 col-lg-3 mb-2 mr-auto">
                 <label for="validationCustom09">Bairro:</label>
                 <input
                   type="text"
@@ -297,7 +297,7 @@ end if
                   %>
                   </select>
                 </div>
-                <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-2">
+                <div class="col-12 col-sm-6 col-md-7 col-lg-3 mb-2">
                   <label for="validationCustom12">ID do estoque:</label>
                   <input
                     type="text"
@@ -337,7 +337,7 @@ end if
               </div>
       
               <div class="row">
-                <div class="col-12 col-sm-12 col-md-10 col-lg-7 mb-2 ml-auto">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-7 mb-2 ml-auto">
                   <label for="validationCustom13">Chave da nota fiscal:</label>
                   <input
                     type="text"
@@ -349,7 +349,7 @@ end if
                     required
                   />
                 </div>
-                <div class="col-12 col-sm-6 col-md-5 col-lg-4 mb-2 mr-auto">
+                <div class="col-12 col-sm-6 col-md-7 col-lg-4 mb-2 mr-auto">
                   <label for="validationCustom16">E-mail do estabelecimento:</label>
                   <input
                     type="text"
@@ -378,6 +378,7 @@ end if
 
       <script>
         $(document).ready(function(){
+          $('#numeroDocumento').mask('00000000000000');
           $('#cepComprador').mask('00000-000');
           $('#idEstoque').mask('0000000000000000000');
           $('#chaveNotaFiscal').mask('0000-0000-0000-0000-0000-0000-0000-0000-0000-0000-0000');
@@ -431,8 +432,7 @@ end if
               $("#estado").trigger('change');
             }
           }   
-        });
-
+        });   
       });
 
 </script>

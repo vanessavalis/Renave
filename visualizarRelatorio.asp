@@ -121,11 +121,13 @@ visualizarMenu="NAO"
 			            <th>Número do documento</th>
 			        </tr>
 				</thead>
-		        <tbody>  
-		        	<td><%=con("NOME_COMPRADOR")%></td>
-                	<td><%=con("EMAIL_COMPRADOR")%></td>
-                	<td><%=con("TIPO_DOCUMENTO")%></td>
-                  	<td><%=con("NUMERO_DOCUMENTO")%></td>
+		        <tbody>
+		        	<tr> 
+		        		<td><%=con("NOME_COMPRADOR")%></td>
+                		<td><%=con("EMAIL_COMPRADOR")%></td>
+                		<td><%=con("TIPO_DOCUMENTO")%></td>
+                  		<td><%=con("NUMERO_DOCUMENTO")%></td>
+                  	</tr>
                 </tbody>
             </table>
 
@@ -144,14 +146,16 @@ visualizarMenu="NAO"
 			        </tr>
 			    </thead>
 			    <tbody>
-			    	<td><%=con("CEP")%></td>
-                  	<td><%=con("LOGRADOURO")%></td>
-                  	<td><%=con("NUMERO")%></td>
-                  	<td><%=con("COMPLEMENTO")%></td>
-                  	<td><%=con("BAIRRO")%></td>
-                  	<td><%=con("NomeMunicipio")%></td>
-                  	<td><%=con("ESTADO")%></td>
-                  	<td><%=con("CODIGO_MUNICIPIO")%></td>
+			    	</tr>
+			    		<td><%=con("CEP")%></td>
+                  		<td><%=con("LOGRADOURO")%></td>
+                  		<td><%=con("NUMERO")%></td>
+                  		<td><%=con("COMPLEMENTO")%></td>
+                  		<td><%=con("BAIRRO")%></td>
+                  		<td><%=con("NomeMunicipio")%></td>
+                  		<td><%=con("ESTADO")%></td>
+                  		<td><%=con("CODIGO_MUNICIPIO")%></td>
+                	</tr>
 			    </tbody>
 			</table>    
 
@@ -175,6 +179,7 @@ visualizarMenu="NAO"
                   		<td><%=data_venda_fmt%></td>
                   		<td><%=con("VALOR_VENDA")%></td>
                   		<td><%=con("EMAIL_ESTABELECIMENTO")%></td>
+                  	</tr>
 		 		</tbody>
 		    </table>
 		</div>
@@ -182,8 +187,10 @@ visualizarMenu="NAO"
 	end if
 %>
 
-<div class="form-row justify-content-center mt-3">
-	<a href="javascript:history.back()" class="btn btn-primary btnVoltar" alt="Voltar" title="Voltar" name=btnVoltar id=btnVoltar>Voltar</a>
+<div class="row mt-3 mb-4 justify-content-center">
+	<div class="col-12 col-sm-4 col-md-3 col-lg-2">
+		<a href="javascript:history.back()" class="btn btn-primary btnVoltar btn-block" alt="Voltar" title="Voltar" name=btnVoltar id=btnVoltar>Voltar</a>
+	</div>
 </div>
 
 <!-- #include file="sge_renave_rodape.asp" -->
