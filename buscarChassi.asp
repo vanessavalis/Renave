@@ -52,41 +52,8 @@ if (request.QueryString("acao")="excluirRegistro") then
 end if
 
 titulo="Buscar Chassi"
-
-function Ceil(Number)
-    Ceil = Int(Number)
-    if Ceil <> Number then
-        Ceil = Ceil + 1
-    end if
-end function
-
-function ternario(cond, ret)
-  if cond = True then
-    Response.Write ret
-  else
-    Response.Write ""
-  end if
-end function
-
-strStatus = Request("strStatus")
-
-' Paginacao
-page = Request.Item("page")
-limit = 10
-
-if (trim(page) = "") or (isnull(page)) then
-  page = 1
-end if
-
-offset = ((Clng(page) * Clng(limit)) - Clng(limit))
-
-set ObjRstCount = Nothing
-
-pages = Ceil((totalRows / limit))
-
 btnBuscar=request.form("btnBuscar")
 
-'response.write "ValorBotao =>"&btnBuscar
 if btnBuscar<>""then
   ' trabalhar a acao de pesquisar'
 

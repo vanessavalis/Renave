@@ -166,7 +166,6 @@ end if
    
       <!-- #include file="sge_renave_rodape.asp" -->
 
-      
       <script>
         $(document).ready(function(){
           $('#hodometro').mask('000000');
@@ -175,38 +174,4 @@ end if
           $('#chaveNotaFiscal').mask('0000-0000-0000-0000-0000-0000-0000-0000-0000-0000-0000');
           $('#valorCompra').mask('00.000.000,00', {reverse: true});
         })
-      </script>
-      
-      <script>
-
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-          "use strict";
-          window.addEventListener(
-            "load",
-            function () {
-              // Fetch all the forms we want to apply custom Bootstrap validation styles to
-              var forms = document.getElementsByClassName("needs-validation");
-              // Loop over them and prevent submission
-              var validation = Array.prototype.filter.call(
-                forms,
-                function (form) {
-                  form.addEventListener(
-                    "submit",
-                    function (event) {
-                      if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                      }
-                      form.classList.add("was-validated");
-                    },
-                    false
-                  );
-                }
-              );
-            },
-            false
-          );
-        })();
-
       </script>
